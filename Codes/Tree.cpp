@@ -255,3 +255,128 @@ int main(){
 
 
 
+
+//Complete Binary Tree 
+// void insert(int data){
+// 	if (q.isempty()){
+// 		root = new Node(data);
+// 		q.enqueue(root);
+// 		return;
+// 	}
+// 	if (q.peek()->left==NULL){
+// 		q.peek()->left = new Node(data);
+// 		q.enqueue(q.peek()->left);
+// 		return;
+// 	}
+// 	else if (q.peek()->right==NULL){
+// 		q.peek()->right = new Node(data);
+// 		q.enqueue(q.peek()->right);
+// 		q.dequeue();
+// 		return;
+// 	}	
+// }
+// //Preorder Traversal
+// void preOrder(Node* root){
+// 	if(root==NULL){
+// 		return;
+// 	}
+// 	cout<<root->data<<" ";
+// 	preOrder(root->left);
+// 	preOrder(root->right);
+// }
+
+// //Inorder Traversal
+// void inOrder(Node* root){
+// 	if(root==NULL){
+// 		return;
+// 	}
+// 	inOrder(root->left);
+// 	cout<<root->data<<" ";
+// 	inOrder(root->right);
+// }
+
+// //Postorder Traversal
+// void postOrder(Node* root){
+// 	if(root==NULL){
+// 		return;
+// 	}
+// 	postOrder(root->left);
+// 	postOrder(root->right);
+// 	cout<<root->data<<" ";
+// }
+
+// bool search(Node* root,int data){
+// 	if(root==NULL){
+// 		return false;
+// 	}
+// 	if(root->data==data){
+// 		return true;
+// 	}
+// 	return search(root->left,data)||search(root->right,data);
+// }
+
+
+
+// int main(){
+// 	cout<<	"COMPLETE BINARY TREE IMPLEMENTATION\nEnter 1 to insert element.\nEnter 2 for Preorder Traversal.\nEnter 3 for Inorder Traversal. \n Enter 4 for Postorder Traversal.\n Enter 5 to Search an element.\n Type exit to exit.\n";
+// 	int t;
+// 	while(1){
+// 		cout<<"Enter your choice: ";
+// 		cin>>t;
+// 		if(t==1){
+// 			int data;
+// 			cout<<"Enter the data: ";
+// 			cin>>data;
+// 			insert(data);
+// 		}
+// 		else if(t==2){
+// 			cout<<"Preorder Traversal: ";
+// 			preOrder(root);
+// 			cout<<endl;
+// 		}
+// 		else if(t==3){
+// 			cout<<"Inorder Traversal: ";
+// 			inOrder(root);
+// 			cout<<endl;
+// 		}
+// 		else if(t==4){
+// 			cout<<"Postorder Traversal: ";
+// 			postOrder(root);
+// 			cout<<endl;
+// 		}
+// 		else if(t==5){
+// 			int data;
+// 			cout<<"Enter the data: ";
+// 			cin>>data;
+// 			if(search(root,data)){
+// 				cout<<"Element found\n";
+// 			}
+// 			else{
+// 				cout<<"Element not found\n";
+// 			}
+// 		}
+// 		else if(t==6){
+// 			cout<<"Exiting...\n";
+// 			break;
+// 		}
+// 		else{
+// 			cout<<"Invalid choice\n";
+// 		}
+
+	
+
+// }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
