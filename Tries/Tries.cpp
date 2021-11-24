@@ -53,18 +53,18 @@ public:
 	void insertWord(string word){
 		insertWord(root,word);
 	}
-	bool search (string word){
+	bool searchhelp(string word , TrieNode *root){
+		if(word.size()==0 &&  root->isTerminal==true){
+			return false;
+		}  //Base Case
 		int index = word[0] - 'a';
 		if(root->children[index]==NULL) return false;
-		if (word.size()==1){
-			if (root->isTerminal ==true){
-				return true;
-			}
-			return search(word.substr(1));
-		}
-			
+		
+		else return searchhelp(word.substr(1),root->children[index]);
+	}
+	bool search(string word){
+		return searchhelp(word,root);
+	}
 	
-	
-;}
 
 };
