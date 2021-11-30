@@ -4,7 +4,7 @@ int main(){
 cout<<endl;
 	return 0;
 }
-
+// Node of Trie
 class TrieNode{
 public:
 	char data;
@@ -21,7 +21,7 @@ public:
 		isTerminal= false;
 	}
 };
-
+// Trie Class
 class Trie{
 	TrieNode *root;
 public:
@@ -49,10 +49,11 @@ public:
 		insertWord(child , word.substr(1));
 
 	}
-	//For user
+	//For user , since we dont need to ask user for root, coz user can be noob and dont know how to use Trie
 	void insertWord(string word){
 		insertWord(root,word);
 	}
+	//Searching a word in Trie
 	bool searchhelp(string word , TrieNode *root){
 		if(word.size()==0 &&  root->isTerminal==true){
 			return false;
@@ -64,6 +65,43 @@ public:
 	}
 	bool search(string word){
 		return searchhelp(word,root);
+	}
+
+	void removeWord(TrieNode* root , string word){
+		//Base Case
+		if(word.size()==0){
+			root->isTerminal = false;
+			return;
+		}
+		//Small Calculation
+		TrieNode*child;
+		int index = word[0] - 'a';
+		if(root->children[index]!=NULL){
+			child = root->children[index];
+		}
+		else{
+			//Word Not Found
+			return;
+		}
+		removeWord(child,word.substr(1));
+
+		// Remove child Node if it is useless
+		if(child->isTerminal==false){
+			for (int i = 0; i < 26; i++)
+			{
+				if(child->children[i]!=NULL){
+					return;
+				}
+			}
+			delete child;
+			root->children[index] = NULL;
+			
+		}
+	}
+
+	//Remove a word from Trie
+	void removeWord(string word){
+		removeWord(root,word);
 	}
 	
 
