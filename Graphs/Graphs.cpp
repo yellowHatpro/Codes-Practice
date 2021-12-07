@@ -1,18 +1,42 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
 using namespace std;   
 //DFS traversal of the graph
-void print(int** edges , int n, int sv , bool* visited){
-    cout<<sv<<endl;
+void printDFS(int** edges , int n, int sv , bool* visited){
+    cout<<sv<<" ";
     visited[sv] = true;
     for(int i=0;i<n;i++){
         if(edges[sv][i]==1){
             if(visited[i]){
                 continue;}
-            print(edges,n,i,visited);
+            printDFS(edges,n,i,visited);
         }
     }
-    
 }
+void printBFS(int** edges , int n , int sv){
+    //for bfs no recursion , we'll use queue
+  queue<int> pendingVertices;
+  bool* visited = new bool[n];
+    for(int i = 0 ; i < n ; i++){
+        visited[i] = false;
+    }
+    pendingVertices.push(sv);
+    visited[sv] = true;
+    while(!pendingVertices.empty()){
+        int currentVertex = pendingVertices.front();
+        pendingVertices.pop();
+        cout<<currentVertex<<" ";
+        for(int i=0;i<n;i++){
+            if(edges[currentVertex][i] == 1 && !visited[i]){
+                pendingVertices.push(i);
+                visited[i] = true;
+            }
+        }
+    }
+delete [] visited;
+cout<<endl;
+}
+
 
 int main()
 {
@@ -40,8 +64,10 @@ int main()
     for(int i=0;i<n;i++){
         visited[i] = false;
     }
+    cout<<"DFS"<<endl;
+    printDFS(edges,n,0,visited);
 
-    print(edges,n,0,visited);
-    
+    cout<<"\nBFS"<<endl;
+    printBFS(edges,n,0);
     
 }
