@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-//Recurrance Relation: f(i) = min(|ai-1 - ai| + f(i-1) , |ai-2 - ai| + f(i-2))
+//Recurrance Relation: f(i) = min(|ai - ai-1| + f(i-1) , |ai - ai-2| + f(i-2))
 
 //Memoization Solution
 
