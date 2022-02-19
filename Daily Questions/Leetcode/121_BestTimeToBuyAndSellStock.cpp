@@ -3,18 +3,38 @@ using namespace std;
 int main(){
 
 }
+class BruteSolution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int max_profit = 0;
+        for(int i =0;i<prices.size();i++){
+            for(int j = i ;j< prices.size();j++){
+                if(prices[j]>prices[i]){
+                    int profit = prices[j]-prices[i];
+                    if(profit>max_profit){
+                        max_profit = profit;
+                    }
+                }
+            }
+        }
+        return max_profit;
+    }
+};
+//Time O(n) Space O(1)
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if(prices.size()==0){
-            return 0;
+        int min_value=prices[0];
+        int max_profit=0;
+        for(int i=0; i<prices.size();i++){
+            if(prices[i]<min_value){
+                min_value = prices[i];
+            }
+            if (prices[i]-min_value>max_profit){
+                max_profit = prices[i] - min_value;
+            }   
         }
-        vector<int>dp(prices.size(),0);
-        vector<int> temp = prices;
-        temp.pop_back();
-        int max = maxProfit(temp);
-        dp.push_back(0);
+        return max_profit;
         
-
     }
 };
