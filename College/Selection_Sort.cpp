@@ -8,21 +8,19 @@ void swap(int *a, int *b)
     *b = temp;
 }
 void selectionSort(int *arr, int size){
-int min_index;
+int min_index; //minimum index variable
 for(int i=0;i<size-1;i++){
     min_index=i;
     for(int j=i+1;j<size;j++){
         if(arr[j]<arr[min_index]){
-            min_index=j;
+            min_index=j;//Min index therefore sorted element begins from left
         }
-        swap(&arr[i],&arr[min_index]);
-
     }
+    swap(&arr[i],&arr[min_index]);
 }
 for (int i = 0; i < size; i++)
 {
     cout<<arr[i]<<" ";
-    cout<<endl;
 }
 
 }

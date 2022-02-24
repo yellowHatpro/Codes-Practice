@@ -3,6 +3,7 @@
 //Input : "ashutosh aswal"
 //Pattern: "ashu"
 //Output: Pattern found at index 0
+//Time Complexity : Theta(n-m+1)m
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +23,6 @@ for (int  i = 0; i <=slide; i++)
         if (j == s2_size-1)
             cout << "Pattern found at index " << i << endl;
     }
-    
 }
 
 }
