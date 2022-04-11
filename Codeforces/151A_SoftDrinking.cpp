@@ -10,7 +10,7 @@ int main(){
 	int nl;cin>>nl;
 	int np;cin>>np;
 	int kxl = k*l;
-	int enuf = kxl/n;
+	int enuf = kxl/nl;
 	int enuflime = c*d;
 	int salt = p/np;
 	int res = min({enuf,enuflime,salt})/n;
