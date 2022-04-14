@@ -28,6 +28,22 @@ int fib(int n){
 	return fib(n-1)+fib(n-2);
 }
 
+void countNonConsequetive1BinStrings(int i, int n, string curr){
+	if(i==n){
+		cout<<curr<<endl;
+		return;
+	}
+	if(curr[curr.length()-1]=='1'){
+			countNonConsequetive1BinStrings(i+1,n,curr+'0');
+			
+	}
+	else{
+	countNonConsequetive1BinStrings(i+1,n,curr+'0');
+	countNonConsequetive1BinStrings(i+1,n,curr+'1');
+	}
+	
+}
+
 /*Q2. Given: There are n persons, who wants to go to a party.
 	There is a constraint that any person can either go alone or can go in a pair.
 	Calculate the no. of ways in which n persons will go to party.
@@ -100,12 +116,58 @@ void pattern1(int n,int i){
 	}
 }
 
+void pattern2(int n,int i){
+	if (n==0) return;
+	if (i>0)
+	{	cout<<"* ";
+		pattern2(n,i-1);
+	}else{
+	cout<<endl;
+	pattern2(n-1,n-1);
+		}
+	}
+
+//Q4. Given an array, print all the subsets of the array.
+void printAllSubsets(vector<int> v, int i, int n, string curr){
+	//Base Case
+	if(i==n){
+		cout<<"["<<curr<<"]\n";
+		return;
+	}
+	printAllSubsets(v,i+1,n,curr+to_string(v[i])+" ");
+	printAllSubsets(v,i+1,n,curr);
+}
+
+//Q5. Given an array, tell if it is sorted
+void sortedOrNot(vector<int> v, int i, int n){
+	if (i==n)
+	{
+		cout<<"TRUE";
+		return ;
+	}
+	if (v[i]>v[i+1])
+	{
+		cout<<"FALSE";
+		return;}
+	
+	else {
+				sortedOrNot(v,i+1,n);
+
+	}
+}	
+
+
+
+//--------------🅜🅐🅘🅝 🅕🅤🅝🅒🅣🅘🅞🅝 🅗🅔🅡🅔------------------------//
 int main(){
 	int n;cin>>n;
 //	cout<<fib(n)<<endl;
 //	cout<<countPartyitems(n);
 //	cout<<powerOptimisedRecursive(n,2);
-	pattern1(n,0);
+//	pattern2(n,n);
+//	printAllSubsets({1,2,3,4},0,4,"");
+//	countNonConsequetive1BinStrings(0,3,"");
+	sortedOrNot({1,2,3,1,4},0,5);
 	return 0;
 
 }
