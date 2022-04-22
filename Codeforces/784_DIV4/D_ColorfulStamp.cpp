@@ -37,6 +37,7 @@ int main(){
 			{
 				cout<<"NO"<<endl;
 				fnd=true;
+				break;
 			}
 		}
 		if (fnd==false)
