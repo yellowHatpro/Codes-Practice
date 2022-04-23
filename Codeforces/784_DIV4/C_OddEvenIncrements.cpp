@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main(){
-	int t;cin>>t;
-	while(t--){
-		int n;cin>>n;
 
-		bool next=false;
+void solve(){
+		int n;cin>>n;
 		vector<int> v;
 		for (int i = 0; i < n; ++i)
 		{	
@@ -18,23 +15,21 @@ int main(){
 		{
 			isEvenOnEven=true;
 		}
-		for (int i = 3; i < n; i+=2)
+		for (int i = 1; i < n; i+=2)
 		{
 			if (isEvenOnEven)
 			{
 				if (v[i]%2!=0)
 				{
 					cout<<"NO"<<endl;
-					next=true;
-					break;
+					return;
 				}
 			}
 			else{
 				if (v[i]%2==0)
 				{
 					cout<<"NO"<<endl;
-					next=true;
-					break;
+					return;
 				}
 			}
 		}
@@ -43,29 +38,33 @@ int main(){
 		{
 			isOddOnOdd=true;
 		}
-		for (int i = 2; i < n; i+=2)
+		for (int i = 0; i < n; i+=2)
 		{
 			if (isOddOnOdd)
 			{
 				if (v[i]%2==0)
 				{
 					cout<<"NO"<<endl;
-					next=true;
-					break;
+					return;
 				}
 			}
 			else{
 				if (v[i]%2!=0)
 				{
 					cout<<"NO"<<endl;
-					next=true;
-					break;
+					return;
 				}
 			}
 		}
-		if (!next)
-		{
-			cout<<"YES"<<endl;
-		}
+		cout<<"YES"<<endl;
+		return;
+	
+}
+
+
+int main(){
+	int t;cin>>t;
+	while(t--){
+		solve();
 	}
 }
