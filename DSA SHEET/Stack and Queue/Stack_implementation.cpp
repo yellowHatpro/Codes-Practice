@@ -7,9 +7,11 @@ public:
 	T *array =new T;
 	int numofele;
 
-Stack(int cap){
+
+Stack(){
 	top_idx = -1;
 	numofele=0;
+
 }
 
 void push(T data){
