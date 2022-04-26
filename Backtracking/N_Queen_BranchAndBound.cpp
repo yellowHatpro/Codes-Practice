@@ -20,7 +20,7 @@ void nqueen(int n,int row, bool col[], bool diag[], bool reversediag[], string a
 	}
 	for (int column = 0; column < n; ++column)
 	{
-		if (col[column]==false && diag[row+column]==false&& reversediag[row-column + n-1]==false)
+		if (!col[column] && !diag[row+column]&& !reversediag[row-column + n-1])
 		{
 			col[column]=true;
 			diag[row+column]=true;
@@ -31,7 +31,7 @@ void nqueen(int n,int row, bool col[], bool diag[], bool reversediag[], string a
 			col[column]=false;
 			diag[row+column]=false;
 			reversediag[row-column + n-1] = false;
-			
+
 		}
 
 	}
@@ -53,4 +53,5 @@ int main(){
 	}
 	string asf="";
 	nqueen(n,0,col,diag,reversediag,asf);
+	cout<<asf;
 }
