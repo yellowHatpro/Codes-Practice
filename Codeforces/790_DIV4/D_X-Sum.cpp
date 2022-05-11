@@ -2,7 +2,7 @@
 using namespace std;
 
 void solveBoard(int i, int j, vector<vector<int>> v, vector<vector<int>> &res){
-
+	
 }
 
 void solve(){
