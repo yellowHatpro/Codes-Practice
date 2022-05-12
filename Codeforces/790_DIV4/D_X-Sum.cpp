@@ -1,32 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solveBoard(int i, int j, vector<vector<int>> v, vector<vector<int>> &res){
-	
-}
-
 void solve(){
 	int n,m;
 	cin>>n;cin>>m;
-	vector<vector<int>> v;
+	int v[n][m];
 	for (int i = 0; i < n; ++i)
 	{
 		for (int j = 0; j < m; ++j)
 		{
-			int x;cin>>x;
-			v[i].push_back(x);
+			cin>>v[i][j];
 		}
 	}
+	int mx = 0;
 	for (int i = 0; i < n; ++i)
 	{
-		for (int j = 0; j < m; ++i)
-		{
-			vector<vector<int>> res;
-			solveBoard(i,j,v, res);
-		}
+		for (int j = 0; j < m; ++j)
+			{
+				int now = 0;
+				int ci=i,cj=j;
+				while(ci >= 0 && ci < n && cj >= 0 && cj < m)
+				{
+					now+=v[ci][cj];
+					ci--;
+					cj--;
+				}
+				ci = i, cj = j;
+				while(ci>=0 && ci<n && cj>=0 && cj<m){
+					now+=v[ci][cj];
+					cj--;
+					ci++;
+				}
+				ci = i; cj = j;
+				while (ci>=0 && ci<n && cj>=0 && cj <m){
+					now+=v[ci][cj];
+					ci--;
+					cj++;
+				}
+				ci=i;cj=j;
+				while(ci>=0 && ci < n && cj>=0 && cj <m){
+					now+=v[ci][cj];
+					ci++;
+					cj++;
+				}
+				now-=v[i][j]*3;
+				mx = max(mx,now);
+			}	
 	}
-
-	return;
+	cout<<mx<<endl;
 }
 int main(){
 	int t;cin>>t;
