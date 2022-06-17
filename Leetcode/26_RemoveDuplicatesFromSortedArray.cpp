@@ -17,4 +17,4 @@ public:
   nums.resize(c);    // resize the size of array 
   return nums.size();   // return new size of array
 }
-}
+};
