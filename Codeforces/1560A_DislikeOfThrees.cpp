@@ -19,7 +19,6 @@ void solve(){
 	}
 	cout<<x-1<<endl;
 	return;
-}
 
 int main(){
 	int t;
