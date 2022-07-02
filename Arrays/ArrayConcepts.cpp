@@ -20,6 +20,9 @@ cout<<endl;
 	return 0;
 }
 
+//Sort an array
+//sort(arr,arr+n);
+
 //Passing Array to function : Passed  as a pointer to the first element.
 
 
@@ -28,4 +31,3 @@ void process (int *p, const size_t len){
 	//Because the array parameter is not const, the function can modify the array elements.
 
 }
-=
