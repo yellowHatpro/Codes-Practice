@@ -9,14 +9,20 @@ void increment(int& n){
 
 //We can also do return by reference
 	//We need to be careful while returning address or reference of a local variable of a function, coz that memory will be cleared after the function has been used
+//Bad practise
 int& f1(int n){
 	int i=n;
 	return i;
 }
 
+//Bad practise
 int* f2(){
 	int i = 10;
 	return &i;
+}
+
+void allIndexes(int (& x)[10]){
+	//this is how we pass by reference any array, x is the array
 }
 
 
