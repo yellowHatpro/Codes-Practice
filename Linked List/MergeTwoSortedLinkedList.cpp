@@ -33,6 +33,54 @@ Node* mergeTwoSortedLinkedListA(Node* head1 , Node* head2){
     }
     return result;
 }
+
+Node* merge(Node* head1, Node* head2){
+    if (head1==NULL)
+    {
+        return head2;
+    }
+    if(head2==NULL){
+        return head1;
+    }
+    Node* fh = NULL;
+    Node* ft = NULL;
+    while(head1!=NULL&&head2!=NULL){
+        if (fh==NULL)
+        {
+            if (head1->data<head2->data)
+            {
+                fh = head1;
+                head1=head1->next;
+            }else {
+                fh = head2;
+                head2=head2->next;
+            }
+            ft = fh;
+        }
+        else {
+              if (head1->data<head2->data)
+            {
+                ft->next = head1;
+                ft=ft->next;
+                head1=head1->next;
+            }else {
+                ft->next = head2;
+                ft=ft->next;                
+                head2=head2->next;
+            }
+        }
+    }
+    if (head1!=NULL)
+    {
+        ft->next = head1;
+    }
+   else if (head2!=NULL)
+    {
+        ft->next = head2;
+    }
+    return fh;
+}
+
 int main(){
 
     Node* head1 = new Node(1);
@@ -43,7 +91,7 @@ int main(){
     head2->next = new Node(4);
     head2->next->next = new Node(6);
     head2->next->next->next = new Node(8);
-    Node* result = mergeTwoSortedLinkedListA(head1 , head2);
+    Node* result = merge(head1 , head2);
     cout<<"Recursive O n space ";
     printList(result);
     cout<<endl;

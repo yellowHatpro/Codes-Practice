@@ -1,14 +1,13 @@
 #include "LinkedList.h"
 #include "LinkedListTakeInput.h"
 
-Node* insertNode(Node* head , int i , int data){
+void insertNode(Node* head , int i , int data){
     Node* newNode = new Node(data);
     Node* temp = head;
     int count = 0;
     if(i==0){
         newNode->next = head;
         head = newNode;
-        return head;
     }
     while(temp!=NULL && count<i-1){
         temp = temp->next;
@@ -17,14 +16,13 @@ Node* insertNode(Node* head , int i , int data){
     if(temp!=NULL){
     Node* temp2 = temp->next;
     temp->next = newNode;
-    newNode->next = temp;
+    newNode->next = temp2;
     /* or
-    newNOde->next = temp->next;
+    newNode->next = temp->next;
     temp->next = newNode;
 
     */
     }
-    return head;
 }
 
 void printList(Node* head){
