@@ -1,5 +1,5 @@
 #include "LinkedList.h"
-Node *swapNodes(Node *head, int i, int j)
+Node *swapNode(Node *head, int i, int j)
 {
 	//Write your code here
      Node *temp = head, *prev = NULL; 
@@ -36,4 +36,33 @@ Node *swapNodes(Node *head, int i, int j)
     node2 -> next = node1 -> next; 
     node1 -> next = temp1;
     return head;
+}
+
+Node* swapNodes(Node* head, int i, int j){
+    Node* prev = NULL;
+    Node* temp = head;;
+    Node* temp2 = NULL;
+    Node* prev2 = NULL;
+    int pos=0;
+
+    if (i==j)
+    {
+        return head;
+    }
+    while(pos>i-2){
+        pos++;
+        temp=temp->next;
+    }
+    prev = temp;
+    temp=temp->next;
+    pos = 0;
+    while(pos>j-2){
+        pos++;
+        temp2=temp2->next;
+    }
+    prev2 = temp2;
+    temp2=temp2->next;
+
+    prev->next = temp2;
+    
 }
