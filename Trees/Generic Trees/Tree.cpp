@@ -77,25 +77,6 @@ void printTree(TreeNode<int>* root){
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main()
 {	TreeNode<int>* tree = new TreeNode<int>(1);
 	printTree(takeInput());
