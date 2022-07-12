@@ -79,7 +79,7 @@ void leftRotateOptimized(vector<int> v, int d, int n) {
 }
 
 // -------------------------------------------------------------
-// METHOD -4- Using Reversal Algorithm
+// METHOD -4- Using Reversal Algorithm- Best, Use this only
 /*rotate(arr[], d, n)
   reverse(arr[], 1, d) ;
   reverse(arr[], d + 1, n);
@@ -95,13 +95,23 @@ void reverseArray(vector<int> v, int start, int end) {
         end--;
     }
 }
-
-void rightClockWiseRotate(const vector<int>& v, int d, int n) {
+//1 2 3 4 5 d=2 -> 3 4 5 1 2
+void leftClockWiseRotate(const vector<int>& v, int d, int n) {
     if (d == 0) return;
     d = d % n;  // In case d>=n
     reverseArray(v, 0, d - 1);
     reverseArray(v, d, n - 1);
     reverseArray(v, 0, n - 1);
+}
+
+
+//1 2 3 4 5, d=2 ->  4 5 1 2 3
+void rightClockWiseRotate( vector<int>& v, int d, int n) {
+    if (d == 0) return;
+    d = d % n;  // In case d>=n
+    reverseArray(v, 0, n - 1);
+    reverseArray(v, 0, d - 1);
+    reverseArray(v, d, n - 1);
 }
 
 // -------------------------------------------------------------

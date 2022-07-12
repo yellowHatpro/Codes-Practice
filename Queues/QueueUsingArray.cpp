@@ -57,8 +57,14 @@ public:
 			return 0;
 		}
 		size--;
+
 		T ans = data[firstIndex];
 		firstIndex =(firstIndex+1) % capacity;
+		if (size==0)
+		{
+			firstIndex = -1;
+			nextIndex = 0;
+		}
 		//If first index reaches end of the array then it will become zero and continue to add elements.
 		return ans;
 	}
@@ -95,8 +101,8 @@ public:
 		if (size==capacity){
 			//here we will expand queue past its capacity , same as its implemented with vectors
 			T *newData = new T[2*capacity];
-			int j=0;
-			for (int i = firstIndex; i < capacity; i++)// if firstIndex !=0
+			int j=0;//travesing in newData array
+			for (int i = firstIndex; i < capacity; i++)//firstIndex to array's last, not queue's..
 			{
 				newData[j] = data[i];
 				j++;

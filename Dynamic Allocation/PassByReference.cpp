@@ -20,6 +20,11 @@ int* f2(){
 	int i = 10;
 	return &i;
 }
+//Bad practice
+int* f3(){
+	int arr[10];
+	return arr;
+}
 
 void allIndexes(int (& x)[10]){
 	//this is how we pass by reference any array, x is the array
