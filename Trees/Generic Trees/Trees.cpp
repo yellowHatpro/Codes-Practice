@@ -1,11 +1,22 @@
 #include "Generic_Tree.h"
 
-TreeNode<int>* takeInputLevelWise(){
+TreeNode<int>* takeInput(){//Depth First
+    int rootData;cin>>rootData;
+    TreeNode<int>* root = new TreeNode<int>(rootData);
+    int n;cin>>n;
+    for (int i = 0; i < n; ++i) 
+    {   TreeNode<int>* child = takeInput();
+        root->children.push_back(child);
+    }
+    return root;
+}
+
+TreeNode<int>* takeInputLevelWise(){//breadth first
     //Queue will have those nodes whose children have not been taken yet
     int rootData;
     cin>>rootData;
    TreeNode<int> * root = new TreeNode<int>(rootData);
-    queue<TreeNode<int>*> pendingNodes;
+    queue<TreeNode<int>*> pendingNodes;//In nodes k children nhi hain abhi ;)
     pendingNodes.push(root);
     while(!pendingNodes.empty()){
         TreeNode<int> *front = pendingNodes.front();
@@ -25,8 +36,10 @@ TreeNode<int>* takeInputLevelWise(){
 }
 
 void printTree(TreeNode<int>* root){
+    //edge case not base case.
     if (root == NULL) return;
     cout<< root->data <<": ";
+    //This for loop isn't part to print tree, its there to print children of each tree node.
     for(int i=0;i<root->children.size();i++){
         cout<<root->children[i]->data<<", ";
     }

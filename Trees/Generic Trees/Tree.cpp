@@ -57,7 +57,7 @@ TreeNode<int>* takeInput(){
 
 /*  
 
-2. Print Tree
+2. Print Tree Level Wise
 
 */
 

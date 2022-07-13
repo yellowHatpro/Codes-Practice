@@ -4,7 +4,7 @@ template<typename T>
 class TreeNode{
     public:
     T data;
-    vector<TreeNode<T>*> children;
+    vector<TreeNode*> children;//children are understood here to have T data type, so no need to do this: vector<TreeNode<T>*> children..
     TreeNode(T data){
         this->data = data;
     }
