@@ -1,5 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include "Generic_Tree.h"
 int getLeafNodeCount(TreeNode<int>* root) {
 	if (!root)
 	{
