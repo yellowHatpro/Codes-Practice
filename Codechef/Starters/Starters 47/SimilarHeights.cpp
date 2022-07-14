@@ -1,3 +1,6 @@
+//Editorial: https://discuss.codechef.com/t/heights-editorial/102190
+
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -35,7 +38,7 @@ void solve(){
 		cout<<ssize/2<<endl;
 	}
 	else {
-	
+		//The reason we are checking sec=2, is coz for sec>2, we can increase any one person's height from the group (of 3 and above) 
 		if (m[g]==1 && sec ==2)
 		{
 			cout<<(ssize/2) +2<<endl;

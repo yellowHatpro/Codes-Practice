@@ -57,5 +57,12 @@ int main(){
     TreeNode<int>*root = takeInputLevelWise();
     printTree(root);
 
+    //DELETE Tree
+    for (int i = 0; i < root->children.size(); ++i)
+    {
+        delete root->children[];
+    }
+    delete root;
+
 
 }
