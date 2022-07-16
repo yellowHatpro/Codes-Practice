@@ -12,38 +12,40 @@ struct ListNode {
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        ListNode* dummy = new ListNode();
-        dummy->next = head;
-        ListNode* oddH = dummy;
-        ListNode* oddT = dummy;
-        ListNode* evenH = dummy;
-        ListNode* evenT = dummy;
-        if (head == NULL || head->next==NULL) return head;
+        if(head == nullptr || head->next == nullptr) return head;
+        ListNode* oddH = NULL;
+        ListNode* oddT = NULL;
+        ListNode* evenH = NULL;
+        ListNode* evenT = NULL;
         ListNode* temp = head;
         while(temp!=NULL){
-            if(temp->val%2==0){
-                if (evenH == dummy)
+            if (temp->val%2==0)
+            {
+                if (evenH==nullptr)
                 {
-                    evenH = dummy->next;
-                    evenT = dummy->next;
+                    evenH = temp;
+                    evenT = temp;
                 }else{
-                    evenT->next = temp;
-                    evenT = evenT->next;
+                    evenT->next=temp;
                 }
-            }
-            else{
-                if (oddH == dummy)
+                evenT->next = NULL;
+            }else{
+                if (oddH==NULL)
                 {
-                    oddH = dummy->next;
-                    oddT = dummy->next;
+                    oddH = temp;
+                    oddT==temp;
                 }else{
-                    oddT->next = temp;
-                    oddT = oddT->next;
+                    oddT->next=temp;
                 }
+                oddT->next = NULL;
             }
-            temp=temp->next;
+           temp=temp->next; 
+        }
+        if (oddH==NULL)
+        {
+            return evenH;
         }
         oddT->next = evenH;
-        return dummy->next;
+        return oddH;
     }
 };
