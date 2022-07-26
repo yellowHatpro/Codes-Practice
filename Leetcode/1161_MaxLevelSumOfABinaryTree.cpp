@@ -33,11 +33,13 @@ public:
         		if(front->right) pendingNodes.push(front->right);
 
         	}
+        	lvl++;
         	if (sum>maxSum)
         	{
         		maxSum = sum;
+        		res=lvl;
         	}
         }
-        return maxSum;
+        return res;
     }
 };
