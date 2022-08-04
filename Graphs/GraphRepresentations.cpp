@@ -76,6 +76,7 @@ public:
 class GraphForAdjacencyList{
     int numVertices;
     list<int> *adjList;
+    //In case of Weighted Graph, list<pair<int,int>> will be used, pair of the other vertex and the weight
 public:
     GraphForAdjacencyList(int V){
         numVertices = V;
