@@ -1,57 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-int helper(int n , int* arr){
-    if(n<=1){
-        return 1;   
-    }
-    if(arr[n]!=-1){
-        return arr[n];
-    }
 
-    int a = helper(n-1,arr);
-    int b = INT_MAX;
-    int c= INT_MAX;
-    if(n%2==0){
-      int b=helper(n/2,arr);
-    }
-    if(n%3==0){
-        int c=helper(n/3,arr);
-    }
-        return min({a,b,c});
-
-
-}
-int countMinStepsToOne(int n){
-    int* arr = new int[n+1];
-    for ( int i = 0; i<=n; i++){
-        arr[i] = -1;
-    }
-    return helper(n,arr);
+int f(vector<int> &dp, int n){
+    if (n<=0) return INT_MAX;
+    if (n==1) return 0;
+    if (dp[n]!=-1) return dp[n];
+    int a = f(dp,n-1) ;
+    int b = (n%2==0) ? f(dp,n/2) : INT_MAX;
+    int c = (n%3==0) ? f(dp,n/3) : INT_MAX;
+    return dp[n] = min({a,b,c}) + 1;
 }
 
-int countMinStepsToOneMemoization(int n, int *memoiz){
-    int* memoiz= new int[n+1];
-    for(int i =0 ; i<=n; i++){
-        memoiz[i] = -1;
-    }
-    if(n<=1){
-        return 0;
-    }
-    if(memoiz[n]!=-1){
-        return memoiz[n];
-    }
-    int x = countMinStepsToOneMemoization(n-1, memoiz);
-    int y = INT_MAX;
-    int z = INT_MAX;
-    if(n%2==0){
-        y = countMinStepsToOneMemoization(n/2);
-    }
-    if(n%3==0){
-        z = countMinStepsToOneMemoization(n/3);
-    }
-    memoiz[n] = min({x,y,z});
-    return memoiz[n];
+int countStepsToOne(int n) {
+    vector<int> dp(n+1,-1);
+    return f(dp,n);
+}
 
-
-
+int main(){
+   cout<<countStepsToOne(4);
 }
