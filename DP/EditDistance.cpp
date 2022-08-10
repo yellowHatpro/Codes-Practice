@@ -13,10 +13,10 @@ int editDistance(string s1, string s2) {
         return editDistance(s1.substr(1), s2.substr(1));
     }
     else{
-        int x = editDistance(s1.substr(1),s2.substr(1));
-        int y =  editDistance(s1.substr(1),s2);
-        int z =  editDistance(s1,s2.substr(1));
- 		return min(min(x,y),z)+1;
+        int x = editDistance(s1.substr(1),s2.substr(1));//Replace
+        int y =  editDistance(s1.substr(1),s2); // Insert
+        int z =  editDistance(s1,s2.substr(1)); // Delete
+ 		return min({x,y,z})+1;
     }
 }
 
