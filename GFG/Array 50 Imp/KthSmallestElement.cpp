@@ -15,11 +15,9 @@ class Solution{
         }
         for (int i = k+l; i <= r; ++i)
         {
-        	if (arr[i]<pq.top())
-        	{
-        		pq.pop();
+        	
         		pq.push(arr[i]);
-        	}
+        	
         }
         return pq.top();
     }
