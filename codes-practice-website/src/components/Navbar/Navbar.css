@@ -1,0 +1,14 @@
+.navbar{
+    height: 56px;
+    color: aliceblue;
+    overflow: hidden;
+    background-color:#1f1f1f;
+    font-size: 28px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    /* this for centering text vertically: */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
