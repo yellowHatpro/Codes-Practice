@@ -54,6 +54,7 @@ vector<int> inorderTraversal(TreeNode* root){
 
 }
 
+//TC -> O(n), SC -> O(2n + n)
 vector<int> postOrderTraversal(TreeNode* root){
 	stack<TreeNode*> s1,s2;
 	vector<int> postOrder;
