@@ -5,3 +5,4 @@ cmake-build-release/
 .idea/
 CMakeLists.txt
 */*.exe
+*/.fleet

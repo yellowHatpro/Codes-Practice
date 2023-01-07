@@ -1,0 +1,6 @@
+.code-directories{
+    display: grid;
+    flex-direction: row;
+    align-self: center;
+    grid-template-columns: 1fr 1fr ;
+}
