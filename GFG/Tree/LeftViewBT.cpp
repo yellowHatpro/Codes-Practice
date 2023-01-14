@@ -34,3 +34,17 @@ vector<int> leftView(Node *root)
    }
    return res;
 }
+
+void f(int currentLevel, vector<int>& res, Node* root ){
+    if (!root) return;
+    if (res.size()==currentLevel) res.push_back(root->data);
+    f(currentLevel+1,res,root->left);
+    f(currentLevel+1,res,root->right);
+}
+
+vector<int> leftViewRecursive(Node* root){
+    vector<int> res;
+    int currentLevel = 0;
+    f(currentLevel,res,root);
+    return res;
+}
