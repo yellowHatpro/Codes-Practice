@@ -12,18 +12,17 @@ struct TreeNode {
 };
 
 class Solution {
+
+    bool f(TreeNode* root,int prev){
+        if (!root) return;
+
+    }
+
+
 public:
     bool isValidBST(TreeNode* root) {
-    	bool l;
-    	bool r;
-        if (!root) return true;
-        if (!root->left){
-        	l = root->val>root->left->val;
-        }
-        if (!root->right){
-        	r = root->val<root->right->val;
-        }
-        
+    	int prev = INT_MIN;
+       return f(root,prev);
 
     }
 };
