@@ -14,7 +14,8 @@ struct TreeNode {
 class Solution {
 
     bool f(TreeNode* root,int prev){
-        if (!root) return;
+        if (!root) return true;
+        f()
 
     }
 
