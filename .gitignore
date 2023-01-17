@@ -6,3 +6,4 @@ cmake-build-release/
 CMakeLists.txt
 */*.exe
 */.fleet
+*/*.cpp__tests
