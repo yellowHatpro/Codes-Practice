@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+//This is O(2N) space solution, can be optimized to O(N) auxiliary space
 class MinStack{
 public:
 	stack<pair<int,int>> s;
