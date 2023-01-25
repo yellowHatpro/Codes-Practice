@@ -1,8 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
+	
+	return 0;
+}
+
+vector<int> prevSmaller(vector<int> &input) {
 	vector<int> v;
-	vector<int> input={1,3,2,4};
 	stack<int> s;
 	for (int i = 0;i<input.size();i++)
 	{
@@ -22,8 +26,5 @@ int main(){
 		}
 		s.push(input[i]);
 	}
-	for(int it : v){
-		cout<<it<<" ";
-	}
-	return 0;
+	return v;
 }
