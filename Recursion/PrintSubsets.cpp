@@ -17,6 +17,10 @@ void printSubsets(int n){
 	printSubsetsHelper(n,"",1);
 }
 
+
+void subsetsOfArray(vector<int> v){
+}
+
 int main(){
 	 printSubsets(5);
 }
