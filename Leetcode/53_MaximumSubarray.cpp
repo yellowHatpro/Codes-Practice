@@ -20,27 +20,28 @@ return max_so_far
 */
 #include <bits/stdc++.h>
 using namespace std;
-class Solution {
+class SolutionKADANE {
 public:
-    int maxSubArray(vector<int>& nums) {
-        long long max_so_far = INT_MIN;
-        long long max_ending_here = 0;
-        for (auto itr = nums.begin(); itr !=nums.end(); itr++){
-            max_ending_here = max_ending_here + *itr;
-            if(max_so_far < max_ending_here){
-                max_so_far = max_ending_here;
-            }
-            if(max_ending_here < 0){
-                max_ending_here = 0;
-            }
-        }
-        return max_so_far;
-        
+    int maxSubArray(vector<int>& arr) {
+    int n = arr.size();
+    int i = 0;
+    int j = 0;
+    int maxsum = INT_MIN;
+    int currsum = 0;
+    while(j<n){
+        currsum+=arr[j++];
+         maxsum = max(maxsum,currsum);
+        if (currsum<=0){
+            currsum=0;
+            i=j;
+        } 
     }
-};
+    return maxsum;
+    }
+}
 
 //2. Dynamic Programming
-class Solution {
+class SolutionDP {
 public:
     int maxSubArray(vector<int>& nums) {
         long long max_so_far = INT_MIN;
