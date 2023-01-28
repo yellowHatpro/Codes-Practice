@@ -14,4 +14,5 @@ int main(){
 	cin>>key>>reversal>>ordering;
 
 	//Extract keys for comparison and store them
+	
 }
