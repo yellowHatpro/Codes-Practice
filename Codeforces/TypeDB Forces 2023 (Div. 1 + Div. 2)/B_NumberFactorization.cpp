@@ -80,6 +80,7 @@ map<ll, ll> primeFactors(int n)
     return m;
 }
 
+//Upsolved
 void solve(){
 	ll n;cin>>n;
 	map<ll, ll> m =  primeFactors(n);
@@ -88,21 +89,17 @@ void solve(){
 		v.push_back({itr.S, itr.F});
 	}
 	sort(v.begin(), v.end());
-	
-	map<int,vi> res;
-	for (auto i: v)
-	{
-		res[i.F].push_back(i.S);
-	}
-	
-	ll sum = 0;
-	for (auto itr : res){
-		ll cnn = 1;
-		for(auto i: itr.S){
-			cnn*=i;
+	vi ans(v[v.size()-1].first,1);
+	for (auto itr: v){
+		for (int i = 0; i < itr.first; ++i)
+		{
+			ans[i]*=itr.second;
 		}
-		sum+=(cnn*itr.F);
 	}
+	ll sum = 0;
+	for (auto itr: ans){
+		sum+=itr;
+	}	
 	cout<<sum<<endl;
 }
 
