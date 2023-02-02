@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DisplayCard from "../components/Card/Card";
 import "./Directories.css";
+import { useNavigate} from "react-router-dom";
+
 
 function Directories() {
 
@@ -11,6 +13,11 @@ function Directories() {
     'Authorization' : process.env.REACT_APP_GITHUB_TOKEN,
     'Accept' : 'application/vnd.github.v3+json'
   }
+
+  const navigate = useNavigate()
+  const goToDirectory = () =>{
+      navigate("/dir")
+  }
   useEffect(() => {
 
     axios.get(url,{} ,{headers: headers})
@@ -19,11 +26,10 @@ function Directories() {
         })
         }, [url])
   if (product){
-    
   return (
       <div className='code-directories'>
        {product.map((productItem) => (
-        <DisplayCard name={productItem.name} key={productItem.name}/>
+        <DisplayCard  name={productItem.name} onClick={() => goToDirectory()} />
        ))}
       </div>
   )
