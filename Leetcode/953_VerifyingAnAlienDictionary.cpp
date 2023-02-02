@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
     
@@ -37,5 +40,37 @@ public:
             
         }
         return true;
+    }
+};
+
+class Solution2 {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+     map<char,int> o;
+     for (int i = 0; i < order.size(); ++i)
+        {
+            o[order[i]]=i+1;
+        }
+     for (int i = 1; i < words.size(); ++i)
+        {
+            int j=0;
+            int k =0;
+            bool ok = false;
+            while(j<words[i-1].size()&&k<words[i].size()){
+                if (o[words[i-1][j]]<o[words[i][k]]){
+                    ok = true;
+                    break;
+                }
+                else if (o[words[i-1][j]]==o[words[i][k]]){
+                    j++;k++;
+                } else {
+                    return false;
+                }
+            }
+            if (j<words[i-1].size() && !ok){
+                return false;
+            }
+        }
+        return true;   
     }
 };
