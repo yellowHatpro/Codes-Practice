@@ -5,3 +5,7 @@
     border: 2px dotted black;
     background-color: rgb(209, 134, 42);
 }
+
+.displayCard:hover{
+    cursor: pointer;
+}

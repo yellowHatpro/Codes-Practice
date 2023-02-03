@@ -1,12 +1,13 @@
-
-.code-directories{
-    padding: 1rem;
+.inner-dir{
+    height: 100vh;
+    padding: 0.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) ;
     grid-gap: 5px;
 }
 
-.code-directories>div{
+.inner-dir>div{
+    height: fit-content;
     padding: 1rem;
     margin: 0.2rem;
 }
