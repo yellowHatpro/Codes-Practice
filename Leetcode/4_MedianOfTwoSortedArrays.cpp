@@ -61,9 +61,9 @@ public:
 					return min(r1,r2);
 				}
 			} else {
-				if (l1>r1){
+				if (l1>r2){
 					r = cut1-1;
-				} else {
+				} else  {
 					l = cut1+1;
 				}
 			}
