@@ -39,7 +39,7 @@ public:
 
     int totalFruit(vector<int>& fruits){
         int l = 0;
-        vector<int> cnt(1000000);
+        vector<int> cnt(1000000); 
         int num = 0;
         int res = 0;
         for (int r = 0; r < fruits.size()-1; ++r)
