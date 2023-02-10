@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll __int64
 int main(){
-	float a,b,c;
-	cin>>a>>b>>c;
-	cout<<ceil(a/c)*ceil(b/c)<<endl;
+	ll n,m,a;
+	cin>>n>>m>>a;
+	cout<<((n+a-1)/a)*((m+a-1)/a)<<endl;
 	return 0;
 }
