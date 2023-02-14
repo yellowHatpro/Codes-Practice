@@ -54,33 +54,8 @@ ll modpow(ll x, ll n, int m=MOD){
 
 int solve(){
 	int d,n,k;cin>>d>>n>>k;
-	vector<pair<int, pair<int,int>>> v;
-	vector<int> days(d+1);
-	for (int i = 0; i < n; ++i)
-	{
-		int h;cin>>h;
-		int s;cin>>s;
-		int e;cin>>e;
-		v.push_back({h,{s,e}});
-	}
-	sortall(v);
-    reverse(v.begin(), v.end());
-	int ans = 0;
-	for (int i = 0; i < n; ++i)
-	{
-		int cnt =0;
-		int st = v[i].second.first;
-		int en = v[i].second.second;
-		int w = v[i].first;
-		while(st<=en){
-			days[st++]+=w;
-		}
-	}
-	int maxi = 0;
-	for (auto itr: days){
-		maxi = max(maxi, itr);
-	}
-	return maxi;
+	multiset<int, greater<int>> v;
+	 
 }
 
 int32_t main(){
