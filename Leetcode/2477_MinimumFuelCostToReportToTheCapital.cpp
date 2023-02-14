@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-class Solution {
+class SolutionBFS {
 public:
     void countChild(int index, vector<vector<int>> &graph, vector<int> &child)
     {
@@ -59,5 +59,35 @@ public:
         }
 
         return minFuel;
+    }
+};
+class SolutionDFS{
+public:
+    long long ans;
+    void dfs(vector<int>& vis, vector<vector<int>>& graph, vector<vector<int>> & roads, int seat, int i, vector<int>& r){
+        vis[i] = 1;
+        for(auto ch : graph[i]){
+            if (!vis[ch]){
+               dfs(vis, graph, roads, seat, ch, r);
+                r[i]+=r[ch];
+                ans+= ceil(r[ch]/(double)seat);
+            }
+        }
+        r[i]++;
+        return;
+    }
+
+   long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
+        int n = roads.size();
+        vector<vector<int>> graph(n+1);
+        for (int i = 0; i < roads.size(); ++i)
+        {
+            graph[roads[i][0]].push_back(roads[i][1]);
+            graph[roads[i][1]].push_back(roads[i][0]);
+        }
+        vector<int> child(n+1,0);
+        vector<int> vis(n+1,0);
+        dfs(vis, graph, roads, seats,0, child);
+        return ans;
     }
 };
