@@ -38,7 +38,7 @@ public:
     }
     return maxsum;
     }
-}
+};
 
 //2. Dynamic Programming
 class SolutionDP {
@@ -61,5 +61,25 @@ public:
         
         }
          return max_so_far;
+    }
+};
+
+class SolutionSlidingWindow{
+public:
+    int maxSubArray(vector<int>& arr){
+        int n = arr.size();
+        if (n==1) return arr[0];
+        int l = 0;
+        int ans = INT_MIN;
+        int res =0;
+        for (int r = 0; r<n;r++){
+            res+=arr[r];
+            while(res<arr[r] ){
+                res-=arr[l];
+                l++;
+            }
+            ans = max(res,ans);
+        }
+        return ans;
     }
 };
