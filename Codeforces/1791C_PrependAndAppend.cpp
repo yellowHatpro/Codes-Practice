@@ -53,7 +53,22 @@ ll modpow(ll x, ll n, int m=MOD){
 }
 
 void solve(){
-	
+	int n; cin>>n;
+	string s;cin>>s;
+	int l = 0;
+	int r = n-1;
+	int cnt = 0;
+	while(l<r){
+		if(s[l]!=s[r]){
+			l++;
+			r--;
+			cnt+=2;
+		} else {
+			break;
+		}
+	}
+	cout<<n-cnt<<endl;
+	return;
 }
 
 int32_t main(){
