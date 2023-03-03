@@ -56,21 +56,25 @@ void solve(){
 	int n;cin>>n;
 	vector<int> v(n);
 	for (int i = 0; i < n; ++i)
-	{
 		cin>>v[i];
-	}
-	vector<int> s = v;
-	sortall(s);
-	vector<int> r = s;
-	reverse(s.begin(), s.end());
+	
 	int i =0;
 	int j = n-1;
+	int st =1;
+	int en = n;
 	while(i<j){
-		if ((v[i]==s[i] || (v[i]==r[i])) || (v[j]==s[j]) ||(v[j]==r[j])){
+		if ((v[i]==st || v[i]==en)){
+			if (v[i]==st) st++;
+			else en--;
 			i++;
+		} 
+		else if (v[j]==en || v[j]==st){
+			if (v[j]==st) st++;
+			else en--;
 			j--;
-		} else {
-			cout<<i<<" "<<j<<endl;
+		}
+		else {
+			cout<<i+1<<" "<<j+1<<endl;
 			return;
 		}
 	}
