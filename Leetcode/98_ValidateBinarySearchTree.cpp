@@ -13,17 +13,22 @@ struct TreeNode {
 
 class Solution {
 
-    bool f(TreeNode* root,int prev){
-        if (!root) return true;
-        f()
+public:
+    vector<int> v;
 
+    void inorder(TreeNode* root){
+        if (root==nullptr) return;
+        inorder(root->left);
+        v.push_back(root->val);
+        inorder(root->right);
+        return;
     }
 
-
-public:
     bool isValidBST(TreeNode* root) {
-    	int prev = INT_MIN;
-       return f(root,prev);
-
+        inorder(root);
+        for(int i =1; i<v.size(); i++){
+            if (v[i-1]>=v[i]) return false;
+        }
+        return true;
     }
 };
