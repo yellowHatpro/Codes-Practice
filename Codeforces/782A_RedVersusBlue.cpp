@@ -53,13 +53,25 @@ ll modpow(ll x, ll n, int m=MOD){
 }
 
 void solve(){
-	    int n,r,b;
+	int n,r,b;
     cin>>n>>r>>b;
-    int p=r/(b+1),q=r%(b+1);
-    for(int i=0;i<q;i++)    cout<<string(p+1,'R')<<'B';
-    for(int i=q;i<b;i++)    cout<<string(p,'R')<<'B';
-    cout<<string(p,'R');
+    int regions = b+1;
+    int folds = r/regions;
+    int maxRregions = r%regions;
+    for(int i =0; i<maxRregions;i++){
+    	cout<<string(folds+1,'R')<<'B';
+    }
+    for (int i = 0; i < regions - maxRregions; ++i)
+    {
+    	if (i==regions-maxRregions-1){
+    		cout<<string(folds,'R');
+    	}
+    	else{
+    		cout<<string(folds,'R')<<'B';	
+    	}
+    }
     cout<<endl;
+
 
 }
 
