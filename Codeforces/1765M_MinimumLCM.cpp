@@ -63,7 +63,6 @@ void solve(){
     }
     cout << a << ' ' << n - a << '\n';
   }
-}
 
 int32_t main(){
 	FIO
