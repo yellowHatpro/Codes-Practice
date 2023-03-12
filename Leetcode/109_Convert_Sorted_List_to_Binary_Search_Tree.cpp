@@ -46,4 +46,3 @@ public:
         return constructBST(head, nullptr);
     }
 };
-};
