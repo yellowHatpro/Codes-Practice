@@ -9,10 +9,10 @@ public:
         m[0]++;
         for(auto itr: nums){
         	cnt+=itr;
-        	m[cnt]++;
         	if (m[cnt-k]!=0){
-        		res+=m[cnt-k]-1;
+        		res+=m[cnt-k];
         	}
+            m[cnt]++;
         }
         return res;
     }
