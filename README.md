@@ -1,2 +1,2 @@
 # Codes-Practice
-Practising codes
+Practicing codes

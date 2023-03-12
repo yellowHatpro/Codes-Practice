@@ -7,3 +7,4 @@ CMakeLists.txt
 */*.exe
 */.fleet
 */*.cpp__tests
+.fleet/
