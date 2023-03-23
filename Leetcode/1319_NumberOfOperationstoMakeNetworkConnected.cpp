@@ -36,3 +36,33 @@ public:
         return -1;
     }
 };
+
+class SolutionEasier {
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        vector<vector<int>> adjList(n+1,vector<int>());
+        vector<int> vis(n+1);
+        int totalConnectedComp = 0;
+        int edges = 0;
+        for(auto connection: connections){
+            adjList[connection[0]].push_back(connection[1]);
+            adjList[connection[1]].push_back(connection[0]);
+            edges++;
+        }
+        if (edges<n-1) return -1;
+        for(int i = 0; i<n; i++){
+            if (!vis[i]){
+                dfs(i,adjList,vis);
+                totalConnectedComp++;
+            }
+        }
+        return totalConnectedComp-1;
+    }
+    private:
+        void dfs(int currentNode, vector<vector<int>> & adjList, vector<int>& vis){
+            vis[currentNode] = 1;
+            for (auto node: adjList[currentNode]){
+                if (!vis[node]) dfs(node,adjList, vis);
+            }
+        }
+};

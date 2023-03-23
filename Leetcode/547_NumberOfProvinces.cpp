@@ -29,3 +29,39 @@ public:
         return ans;
     }
 };
+
+class Solution2 {
+public:
+
+    void dfs(int node, vector<vector<int>> &adjList, vector<int>& vis ){
+        vis[node] = 1;
+        for(auto curr: adjList[node]){
+            if (!vis[curr]){
+                dfs(curr, adjList, vis);
+            }
+        }
+    }
+
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<vector<int>> adjList(n+1);
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
+                if (i==j) continue;
+                if (isConnected[i][j]) adjList[i].push_back(j);
+            }
+        }
+        vector<int> vis(n,0);
+        int cnt = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            if (!vis[i]){
+                cnt++;
+                dfs(i,adjList, vis);
+            }
+        }
+        return cnt;
+    }
+};
