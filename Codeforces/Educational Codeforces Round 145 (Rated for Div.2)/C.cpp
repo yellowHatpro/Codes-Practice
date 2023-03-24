@@ -53,7 +53,31 @@ ll modpow(ll x, ll n, int m=MOD){
 }
 
 void solve(){
-	
+	int n,k;cin>>n>>k;
+	int negNeed =  (n *(n+1) /2) - k;
+	map<int, int> m;
+	vector<int> v(n,2);
+	int index = 0;
+	if (negNeed>0){
+		negNeed--;
+		v[0] = -1;
+	}
+	m[index]++;
+	while(negNeed>0){
+		if (m[index]<n-index){
+			if (m[index]==0){
+				v[index] = -1;
+				m[index]++;
+				negNeed--; 
+			} else {
+				v[index]-=2;
+				m[index]++;
+				negNeed--;
+			}
+		} else index++;
+
+	}
+	print(v);
 }
 
 int32_t main(){
