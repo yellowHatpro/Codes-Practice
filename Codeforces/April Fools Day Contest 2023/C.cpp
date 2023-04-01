@@ -52,16 +52,26 @@ ll modpow(ll x, ll n, int m=MOD){
 	return res;
 }
 
-void solve(){
-	
+void solve(int x){
+	int ans = 1;
+	for (int i = 0; i < x; ++i)
+	{
+		int inp;cin>>inp;
+		ans*=inp;
+	}
+	cout<<ans<<endl;
 }
 
 int32_t main(){
 	FIO
 	int t=1;
 	cin>>t;
-	while(t--){
-	solve();
+	int x = 0;
+	while(x<t){
+	string pi = "31415926535897932384626433832795";
+	int val = pi[x] - '0';	
+	x++;
+	solve(val);
 	}
 	return 0;
 }

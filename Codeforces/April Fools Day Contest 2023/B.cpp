@@ -54,10 +54,10 @@ ll modpow(ll x, ll n, int m=MOD){
 
 void solve(){
 	int n;cin>>n;
-	if (n<=12){
-		YES
-	}else {
+	if (n==15 || n==20 || n==21){ //Codeforces contest ID for unrated contests
 		NO
+	}else {
+		YES
 	}
 	return ;
 }
