@@ -1,0 +1,8 @@
+[
+	{
+		"test": "4\n3\ncba\n4\nacac\n5\nabbcb\n4\naaba\n"
+	},
+	{
+		"test": "1\n6\nabcaba\n"
+	}
+]
