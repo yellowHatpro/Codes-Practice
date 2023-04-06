@@ -52,15 +52,45 @@ ll modpow(ll x, ll n, int m=MOD){
 	return res;
 }
 
-void solve(){
-	int k;cin>>k;
-	cout<<-1<<endl;
+int gcd(int a, int b,int &x, int &y){
+    if(b == 0){
+        x= 1; y = 0;
+        return a;
+    }
+    int x1, y1;
+    int d = gcd(b, a%b, x1, y1);
+    x = y1;
+    y = x1 - y1*(a/b);
+    return d;
 }
+
+void solution(int a, int b, int n)
+{
+    int x0, y0;
+    int g = gcd(a, b, x0, y0);
+    if(n%g != 0){
+    	NO
+        return;
+    }
+    x0 = x0*n/g;
+    y0 = y0*n/g;
+    // single valid answer
+   	YES
+   	return;
+ 
+
+}
+
+void solve(){
+	int n,k;cin>>n>>k;
+	solution(2,k,n);
+}
+
 
 int32_t main(){
 	FIO
 	int t=1;
-	//cin>>t;
+	cin>>t;
 	while(t--){
 	solve();
 	}
