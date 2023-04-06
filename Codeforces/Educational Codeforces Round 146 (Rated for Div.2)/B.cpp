@@ -53,20 +53,21 @@ ll modpow(ll x, ll n, int m=MOD){
 }
 
 int f(int i, int j, int m, vector<vector<int>> &dp, int cnt){
-	if (i==0 && j ==0) return cnt;
-	if (i<0 || j<0 || m>max(i,j)) return 1e10;
-	if (dp[i][j]!=-1) return dp[i][j];
-	int a = 1+  f(i,j,m+1,dp,cnt);
-	int b = 1+  f(i-m,j,m,dp,cnt);
-	int c = 1+  f(i,j-m,m,dp,cnt);
-	return dp[i][j] = min({a,b,c});
+    if (i==0 && j ==0) return cnt;
+    if (i<0 || j<0 || m>max(i,j)) return 1e10;
+    if (dp[i][j]!=-1) return dp[i][j];
+    int a =  f(i,j,m+1,dp,cnt+1);
+    int b =  f(i-m,j,m,dp,cnt+1);
+    int c =  f(i,j-m,m,dp,cnt+1);
+    return dp[i][j] = min({a,b,c});
 }
 
 void solve(){
-	int a,b;cin>>a>>b;
-	int m = 1;
-	vector<vector<int>>	dp(a+1,vector<int>(b+1,-1));
-	 cout<< f(a,b,m,dp, 0)<<endl;
+    int a,b;
+    cin>>a>>b;
+    int m = 1;
+    vector<vector<int>>    dp(a+1,vector<int>(b+1,-1));
+     cout<< f(a,b,m,dp, 0)<<endl;
 }
 
 int32_t main(){
