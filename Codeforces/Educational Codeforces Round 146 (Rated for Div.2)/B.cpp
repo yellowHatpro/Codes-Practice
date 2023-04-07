@@ -27,6 +27,7 @@ constexpr ll MOD = 1e9+7;
 #define mid(l,r) (l+(r-l)/2)
 #define sortall(x) sort(all(x))
 #define print(a) for(auto i: a) cout<<i<<" "; cout<<endl
+#define fillv(v) for(auto i: v) cin>>i;
 
 //Type define
 typedef pair<ll, ll> pll;
@@ -52,22 +53,20 @@ ll modpow(ll x, ll n, int m=MOD){
 	return res;
 }
 
-int f(int i, int j, int m, vector<vector<int>> &dp, int cnt){
-    if (i==0 && j ==0) return cnt;
-    if (i<0 || j<0 || m>max(i,j)) return 1e10;
-    if (dp[i][j]!=-1) return dp[i][j];
-    int a =  f(i,j,m+1,dp,cnt+1);
-    int b =  f(i-m,j,m,dp,cnt+1);
-    int c =  f(i,j-m,m,dp,cnt+1);
-    return dp[i][j] = min({a,b,c});
+int CEIL(int a, int b){
+	return (a+b-1)/b;
 }
 
 void solve(){
-    int a,b;
-    cin>>a>>b;
-    int m = 1;
-    vector<vector<int>>    dp(a+1,vector<int>(b+1,-1));
-     cout<< f(a,b,m,dp, 0)<<endl;
+	int a,b;cin>>a>>b;
+	int ans = 1e5;
+	for (int i = 1; i <= ans; ++i)
+	{
+		int x = CEIL(a,i);
+		int y = CEIL(b,i);
+		ans = min(ans, x+y+i-1);
+	}
+	cout<<ans<<endl;
 }
 
 int32_t main(){

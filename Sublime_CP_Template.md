@@ -30,6 +30,7 @@ constexpr ll MOD = 1e9+7;
 #define mid(l,r) (l+(r-l)/2)
 #define sortall(x) sort(all(x))
 #define print(a) for(auto i: a) cout<<i<<" "; cout<<endl
+#define fillv(v) for(auto i: v) cin>>i;
 
 //Type define
 typedef pair<ll, ll> pll;
@@ -53,6 +54,10 @@ ll modpow(ll x, ll n, int m=MOD){
 		n/=2;
 	}
 	return res;
+}
+
+int CEIL(int a, int b){
+	return (a+b-1)/b;
 }
 
 void solve(){
