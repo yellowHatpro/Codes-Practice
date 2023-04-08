@@ -83,7 +83,13 @@ void solution(int a, int b, int n)
 
 void solve(){
 	int n,k;cin>>n>>k;
-	solution(2,k,n);
+	//solution(2,k,n);
+	if ((n%__gcd(2ll,k))==0l){
+		YES
+	} else {
+		NO
+	}
+	
 }
 
 
