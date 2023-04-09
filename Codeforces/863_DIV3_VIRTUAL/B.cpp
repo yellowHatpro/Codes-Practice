@@ -57,8 +57,13 @@ int CEIL(int a, int b){
 	return (a+b-1)/b;
 }
 
+int dist(int x, int y, int n){
+	return min({x, y, n + 1 - x, n + 1 - y});
+}
+
 void solve(){
-	
+	int n,x1,x2,y1,y2;cin>>n>>x1>>y1>>x2>>y2;
+	cout<<abs(dist(x1,y1,n)- dist(x2,y2,n))<<endl;
 }
 
 int32_t main(){
