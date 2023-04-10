@@ -35,54 +35,24 @@ Node* mergeTwoSortedLinkedListA(Node* head1 , Node* head2){
 }
 
 Node* merge(Node* head1, Node* head2){
-    if (head1==NULL)
-    {
-        return head2;
-    }
-    if(head2==NULL){
-        return head1;
-    }
-    Node* fh = NULL;
-    Node* ft = NULL;
-    while(head1!=NULL&&head2!=NULL){
-        if (fh==NULL)
-        {
-            if (head1->data<head2->data)
-            {
-                fh = head1;
-                head1=head1->next;
-            }else {
-                fh = head2;
-                head2=head2->next;
-            }
-            ft = fh;
+    if (!head1) return head2;
+    if (!head2) return head1;
+    if (head1->data>head2->data) swap(head1,head2);
+    Node* res = head1; //res points to the smaller list
+    while(head1 && head2){
+        Node* temp = NULL; 
+        while (head1 && head1->data<=head2->data){
+            temp = head1; //temp points to head1 till the time its smaller than head2
+            head1=head1->next;
         }
-        else {
-              if (head1->data<head2->data)
-            {
-                ft->next = head1;
-                ft=ft->next;
-                head1=head1->next;
-            }else {
-                ft->next = head2;
-                ft=ft->next;                
-                head2=head2->next;
-            }
-        }
+        temp->next = head2;
+        swap(head1, head2);
     }
-    if (head1!=NULL)
-    {
-        ft->next = head1;
-    }
-   else if (head2!=NULL)
-    {
-        ft->next = head2;
-    }
-    return fh;
+    return res;
+ 
 }
 
 int main(){
-
     Node* head1 = new Node(1);
     head1->next = new Node(3);
     head1->next->next = new Node(5);
@@ -92,7 +62,7 @@ int main(){
     head2->next->next = new Node(6);
     head2->next->next->next = new Node(8);
     Node* result = merge(head1 , head2);
-    cout<<"Recursive O n space ";
+    cout<<"Iterative O 1 space ";
     printList(result);
     cout<<endl;
 
