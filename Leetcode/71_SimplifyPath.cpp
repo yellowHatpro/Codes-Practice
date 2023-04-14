@@ -46,3 +46,24 @@ public:
         return res;
     }
 };
+
+class SolutionSS {
+   public:
+    string simplifyPath(string path) {
+        vector<string> folders;
+        string token;
+        stringstream ss(path);
+        while(getline(ss,token,'/')){
+            if (token==".." && !folders.empty()) folders.pop_back();
+            else if (token==".") continue;
+            if (token!="" && token!="..")folders.push_back(token);
+        }
+        string res="";
+        for(auto itr: folders){
+            res+="/";
+            res+=itr;
+        }
+        if (res.size()==0) res+="/";
+        return res;
+    }
+};

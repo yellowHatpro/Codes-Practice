@@ -17,3 +17,30 @@ public:
         return j == n;
     }
 };
+
+class Solution2 {
+public:
+     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        stack<int> s;
+        int i = 0;
+        int j = 0;
+        int n = pushed.size();
+        while (i<n){
+           while (!s.empty() && j<n && s.top()==popped[j]){
+                s.pop();
+                j++;
+            }
+            s.push(pushed[i++]);
+
+        }
+        while(j<n){
+            if (s.top()!=popped[j++]){
+                return false;
+            } else {
+                s.pop();
+            }
+        }
+        return true;
+
+    }
+};
