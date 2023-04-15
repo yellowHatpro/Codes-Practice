@@ -3,34 +3,19 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-        set<int> s1;
-        set<int> s2;
-        vector<vector<int>> v;
-        v.push_back({});
-        v.push_back({});
-        for (int i = 0; i < nums1.size(); ++i)
-        {
-        	s1.insert(nums1[i]);
+        set<int> s1(nums1.begin(), nums1.end());
+        set<int> s2(nums2.begin(), nums2.end());
+        vector<vector<int>> v(2);
+        for(auto itr: s1){
+            if (s2.count(itr)==0){
+                v[0].push_back(itr);
+            }
         }
-        for (int i = 0; i < nums2.size(); ++i)
-        {
-        	s2.insert(nums2[i]);
-        }
-        set<int>::iterator itr;
-        for(itr = s1.begin();itr!= s1.end();itr++){
-        	if (s2.find(*itr)==s2.end())
-        	{
-        		v[0].push_back(*itr);
-        	}
-        }
-        for(itr = s2.begin();itr!= s2.end();itr++){
-        	if (s1.find(*itr)==s1.end())
-        	{
-        		v[1].push_back(*itr);
-        	}
+        for (auto itr: s2){
+            if (s1.count(itr)==0){
+                v[1].push_back(itr);
+            }
         }
         return v;
-
-
     }
 };
