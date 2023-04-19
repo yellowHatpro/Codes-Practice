@@ -33,42 +33,19 @@ public:
 // A better approach
 class SolutionBetter {
 public:
-    bool isIsomorphic(string s, string t) {
-        if (s.size()!=t.size())
-        {
-            return false;
-        }
+    bool f(string s, string t){
+        if (s.size()!=t.size()) return false;
         map<char, int> m;
-        string a = "";
-        for (int i = 0; i < s.size(); ++i)
-        {
-            if (m.find(s[i])!=m.end())
-            {
-                a+=m[s[i]];
+        for (int i = 0; i < s.size(); ++i) {
+            if (m.find(s[i])==m.end()){
+                m[s[i]] = s[i]-t[i];
             } else {
-                a+=i;
-                m[s[i]] = i;
+                if (m[s[i]]!=(s[i]-t[i])) return false;
             }
-            a+=" ";
         }
-        a = a.substr(0,a.size()-1);
-
-        string b = "";
-         map<char, int> x;
-        for (int i = 0; i < t.size(); ++i)
-        {
-            if (x.find(t[i])!=x.end())
-            {
-                b+=x[t[i]];
-            } else {
-                b+=i;
-                x[t[i]] = i;
-            }
-            b+=" ";
-        }
-        b = b.substr(0,b.size()-1);
-
-        return a==b;
-
+        return true;
+    }
+    bool isIsomorphic(string s, string t) {
+        return f(s,t)&&f(t,s);
     }
 };
