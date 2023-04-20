@@ -58,7 +58,41 @@ int CEIL(int a, int b){
 }
 
 void solve(){
-	
+	int n;cin>>n;
+	vector<int> a(n);
+	vector<int> b(n);
+	for (int i = 0; i < n; ++i)
+	{
+		cin>>a[i];
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		cin>>b[i];
+	}
+	int l=0;
+	int r = 0;
+	for (int i = 0; i < n; ++i)
+  {
+    if (a[i]!=b[i]){
+      l = i;
+      break;
+    }
+  }
+  for (int i = n-1 ; i >=0; i--){
+    if (a[i]!=b[i]){
+      r = i;
+      break;
+    }
+  }
+  int minl = l;
+  int minr = r;
+  while(minl>0 && b[minl]>=b[minl-1]){
+    l = --minl;
+  }
+  while (minr<n-1 && b[minr]<=b[minr+1] ){
+    r = ++minr;
+  }
+  cout<<l+1<<" "<<r+1<<endl;
 }
 
 int32_t main(){

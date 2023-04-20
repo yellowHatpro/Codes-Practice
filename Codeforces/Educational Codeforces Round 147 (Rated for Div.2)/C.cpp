@@ -58,15 +58,10 @@ int CEIL(int a, int b){
 }
 
 void solve(){
+	map<char, int> m;
 	string s;cin>>s;
-	int cnt = 1;
-	for (int i = 1; i < s.size(); ++i)
-	{
-		if (s[i]=='?') cnt*=10;
-	}
-	if (s[0]=='?') cnt*=9;
-	if (s[0]=='0') cout<<0<<endl;
-	else cout<<cnt<<endl;
+	int n = s.size();
+	cout<<n<<endl;
 }
 
 int32_t main(){

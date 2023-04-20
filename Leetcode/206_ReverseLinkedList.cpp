@@ -25,3 +25,18 @@ public:
         return smallAns;
     }
 };
+
+class SolutionIterative {
+public:
+    ListNode* reverseList(ListNode* head){
+        if (!head || !head->next) return head;
+        ListNode* prev = nullptr,curr = head, next = head->next;
+        while(curr){
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            if (next->next) next = next->next;
+        }
+        return prev;
+    }
+};
