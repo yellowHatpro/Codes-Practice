@@ -6,20 +6,13 @@ using namespace std;
 class Solution {
 public:
     int firstBadVersion(int n) {
-        int lo = 0;
-        int hi = n;
-        int prev=0;
-        while (lo<=hi){
-            int mid = hi - (hi-lo)/2 ;
-            if (isBadVersion(mid))
-            {
-                prev = mid;
-                hi= mid -1;
-            }
-            else{
-                lo = mid+1;
-            }
-        }
-        return prev;
+    long long int l = 0;
+    long long int r = (long long int)n+1;
+    while(r>l+1){
+        long long int m = r - (r-l)/2;
+        if (isBadVersion(m)) r = m;
+        else l = m;
+    }
+    return r;
     }
 };
