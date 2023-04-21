@@ -1,4 +1,4 @@
-// yellowhatpro
+// yellowhatpro  (upsolved)
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -58,10 +58,34 @@ int CEIL(int a, int b){
 }
 
 void solve(){
-	map<char, int> m;
 	string s;cin>>s;
-	int n = s.size();
-	cout<<n<<endl;
+	int ans = INT_MAX;
+	function<int(char)> f = [&](char save) ->int {
+		int maxsize = 0;
+		int crnt = 0;
+		for (int i = 0; i < s.size(); ++i)
+		{
+			if (s[i]==save){
+				maxsize = max(maxsize, crnt);
+				crnt = 0;
+				continue;
+			}
+			++crnt;
+		}
+		maxsize = max(maxsize,crnt);
+		int cnt = 0;
+		while(maxsize){
+			maxsize /=2;
+			cnt++;
+		}
+		return cnt;
+	};
+	for (int i = 0; i < 26; ++i)
+	{
+		char curr = 'a'+i;
+		ans = min(ans,f(curr));
+	}
+	cout<<ans<<endl;
 }
 
 int32_t main(){
