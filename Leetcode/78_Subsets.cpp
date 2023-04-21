@@ -52,6 +52,28 @@ public:
     }
 };
 
+class SolutionOP {
+public:
+
+	void f(vector<vector<int>>&res, vector<int>&nums, int i, vector<int> v){
+		if (i==nums.size()){
+			res.push_back(v);
+			return;
+		}
+		v.push_back(nums[i]);
+		f(res,nums,i+1,v);
+		v.pop_back();
+		f(res,nums,i+1,v);
+	}
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        f(res,nums,i,{});
+        return res;
+    }
+};
+
+
 int main(){
 	SolutionRecursive s;
 	vector<int> nums = {1,2,3};
