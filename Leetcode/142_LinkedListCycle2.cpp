@@ -11,27 +11,23 @@ struct ListNode {
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if (head==NULL)
-        {
-        	return head;
+        if (!head) return head;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast && fast->next){
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast==slow){
+                slow = head;
+                while(slow!=fast){
+                    slow = slow->next;
+                    fast = fast->next;
+                    }
+                    return slow;
+                }
         }
-       	ListNode* fast = head;
-       	ListNode* slow = head;
-       	int cnt=0;
-       	while(fast->next!=NULL && fast->next->next!=NULL){
-       		slow=slow->next;
-       		cnt++;
-       		fast=fast->next->next;
-       		if (slow==fast)
-       		{
-       			slow = head;
-       			while(slow!=fast){
-       				slow=slow->next;
-       				fast=fast->next;
-       			}
-       			return slow;
-       		}
-       	}
-       	return NULL;
+        return nullptr; 
+        
+       
     }
 };

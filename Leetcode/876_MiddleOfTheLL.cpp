@@ -12,17 +12,13 @@ using namespace std;
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-    	if (head->next==NULL)
-    	{
-    		return head;
-    	}
-        ListNode* slow = head->next;
-        ListNode* fast = head->next;
-        while(fast->next!=NULL && fast->next->next!=NULL){
-        	slow=slow->next;
-        	fast=fast->next->next;
+        if (!head || !head->next) return head;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast && fast->next){
+            fast = fast->next->next;
+            slow = slow->next;
         }
         return slow;
-
     }
 };
