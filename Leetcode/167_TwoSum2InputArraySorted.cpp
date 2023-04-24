@@ -3,23 +3,24 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-    	vector<int> v;
-        int l=0;
-        int r=numbers.size()-1;
-        while(l<=r){
-        	if (numbers[l]+numbers[r]==target)
-        	{
-        		v.push_back(l+1);
-        		v.push_back(r+1);	
-                return v;
-        	}
-        	else if(numbers[l]+numbers[r]>target){
-        		r--;
-        	}
-        	else{
-        		l++;
-        	}
+        vector<int> v;
+        int n = numbers.size();
+        for (int i = 0; i< n ; i++){
+            int x = target - numbers[i];
+            int l = -1; //good
+            int r = n-1; //bad
+            while(r>l+1){
+                int m = (l+r)/2;
+                if (numbers[m]>=x) r = m;
+                else l = m;
+            }
+            if (r!=i && numbers[r]==x){
+                v.push_back(i+1);
+                v.push_back(r+1);
+                break;
+            }
         }
+        sort(v.begin(), v.end());
         return v;
     }
 };
