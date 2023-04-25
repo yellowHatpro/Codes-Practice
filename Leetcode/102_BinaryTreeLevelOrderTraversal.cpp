@@ -14,23 +14,22 @@ struct TreeNode {
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-    	vector<vector<int>> res;
-        if (!root) return res;
-        queue<TreeNode*> pendingNodes;
-        pendingNodes.push(root);
-        while(!pendingNodes.empty()){
-        	int n = pendingNodes.size();
-        	vector<int> row;
-        	for (int i = 0; i < n; ++i)
-        	{
-        			TreeNode* front = pendingNodes.front();
-        			pendingNodes.pop();
-        			row.push_back(front->val);
-        			if(front->left) pendingNodes.push(front->left);
-        			if(front->right) pendingNodes.push(front->right);
-        	}
-        	res.push_back(row);
+    	vector<vector<int>> ans;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            int n = q.size();
+            vector<int> lvl;
+            for (int i = 0; i < n; ++i)
+            {   
+                TreeNode* node = q.front();
+                q.pop();
+                lvl.push_back(node->val);
+                if (node->left) q.push(node->left);
+                if (node->right) q.push(node->right);
+            }
+            ans.push_back(lvl);
         }
-        return res;
+        return ans; 
     }
 };
