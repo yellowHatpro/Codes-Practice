@@ -2,49 +2,37 @@
 using namespace std;
 class Solution {
 public:
-	int col = 0;
-	void bfs(queue<pair<int,int>> &q, map<pair<int,int>,int> &vis, vector<vector<int>> &res, vector<vector<int>>&image, int color){
+	vector<int> dx{-1,0,1,0};
+	vector<int> dy{0,1,0,-1};
+
+	void bfs(int m, int n, vector<vector<int>>& vis, vector<vector<int>>& v, int sr, int sc, int col){
+		int scol = v[sr][sc];
+		queue<pair<int,int>> q;
+		q.push({sr,sc});
+		v[sr][sc] = col;
+		vis[sr][sc] = 1;
 		while(!q.empty()){
-			pair<int,int> rc = q.front();
+			auto [x,y] = q.front();
 			q.pop();
-			int n = image.size();
-			int m  = image[0].size();
-			for (int i = -1; i <=1; ++i)
+			for (int i = 0; i < 4; ++i)
 			{
-				int nrow = rc.first +i;
-				int ncol = rc.second;
-				while(nrow>=0 && nrow<=n-1 && ncol>=0 && ncol<m &&vis[{nrow,ncol}]==0 && image[nrow][ncol]==col){
-					vis[{nrow,ncol}] = 1;
-					res[nrow][ncol] = color;
-					q.push({nrow,ncol});
+				int r = x + dx[i];
+				int c = y + dy[i];
+				if (r>=0 && c>=0 && r<m && c<n && !vis[r][c] && v[r][c]==scol){
+					v[r][c] = col;
+					q.push({r,c});
+					vis[r][c] = 1;
 				}
 			}
-
-			for (int i = -1; i <=1; ++i)
-			{
-				int nrow = rc.first ;
-				int ncol = rc.second+i;
-				while(nrow>=0 && nrow<=n-1 && ncol>=0 && ncol<m &&vis[{nrow,ncol}]==0 && image[nrow][ncol]==col){
-					vis[{nrow,ncol}] = 1;
-					res[nrow][ncol] = color;
-					q.push({nrow,ncol});
-				}
-			}
-
 		}
 	}
 
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        queue<pair<int,int>> q;
-        map<pair<int,int>,int> vis;
-        int n = image.size();
-		int m  = image[0].size();
-        q.push({sr,sc});
-        vis[{sr,sc}] = 1;
-        vector<vector<int>> res(image.begin(), image.end());
-        res[sr][sc] = color;
-        col = image[sr][sc];
-        bfs(q,vis,res, image, color);
-        return res;
+    	int m = image.size();
+    	int n = image[0].size();
+        vector<vector<int>> vis(m+1,vector<int>(n+1,0));
+        vector<vector<int>> v = image;
+        bfs(m,n,vis,v,sr,sc,color);
+        return v;
     }
 };

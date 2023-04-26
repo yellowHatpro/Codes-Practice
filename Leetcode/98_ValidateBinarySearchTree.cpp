@@ -10,7 +10,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-
+//Iterative Solution
 class Solution {
 
 public:
@@ -30,5 +30,20 @@ public:
             if (v[i-1]>=v[i]) return false;
         }
         return true;
+    }
+};
+
+//Recursive Approach
+class SolutionRecursive {
+public:
+    bool f(TreeNode* root, TreeNode* lower_limit, TreeNode* upper_limit){
+        if (!root) return true;
+        if (lower_limit && root->val<= lower_limit->val) return false;
+        if (upper_limit && root->val>= upper_limit->val) return false;
+        return f(root->left, lower_limit, root) && f(root->right, root, upper_limit);
+    }
+
+    bool isValidBST(TreeNode* root) {
+        return f(root, nullptr, nullptr);
     }
 };
