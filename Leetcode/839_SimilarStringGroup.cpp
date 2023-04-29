@@ -28,7 +28,7 @@ public:
 			rank[xset]++;
 		}
 	}
-}
+};
 
 class Solution {
 public:
