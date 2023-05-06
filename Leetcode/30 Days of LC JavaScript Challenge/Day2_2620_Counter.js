@@ -8,3 +8,6 @@ var createCounter = function(n) {
         return n++;
     }
 }
+
+var createCounter = (n) => () => n++;
+
