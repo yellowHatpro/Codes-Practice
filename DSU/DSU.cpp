@@ -7,3 +7,8 @@
 How to define identity of a group?
 -> We define the leader/parent of the group , we pick any one element and mark it the leader.
 
+*/
+int main (int argc, char *argv[]) {
+  
+  return ;
+}
