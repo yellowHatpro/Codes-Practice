@@ -35,7 +35,7 @@ public:
             curr->next = prev;
             prev = curr;
             curr = next;
-            if (next->next) next = next->next;
+            if (next) next = next->next;
         }
         return prev;
     }
