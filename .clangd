@@ -1,6 +1,7 @@
 CompileFlags:
-  Add: [-std=c++20]
-  Compiler: '--query-driver=C:\\Program` Files\\mingw64\\bin\\g*',
+  Add:
+    - -std=c++20
+
 
 InlayHints:
   Designators: Yes
