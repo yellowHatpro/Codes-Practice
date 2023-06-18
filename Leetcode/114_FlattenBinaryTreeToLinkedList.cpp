@@ -20,12 +20,12 @@ public:
         }
     }
 
-    void flattenRecursive(TreeNode* root){
+    void flatten(TreeNode* root){
     	if (!root) return;
-    	flatten(node->right);
-    	flatten(node->left);
-    	node->right = prev;
-    	node->left = NULL;
-    	prev = node;
+    	flatten(root->right);
+    	flatten(root->left);
+    	root->right = prev;
+    	root->left = NULL;
+    	prev = root;
     }
 };
