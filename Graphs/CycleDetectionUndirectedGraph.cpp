@@ -1,30 +1,69 @@
 #include <bits/stdc++.h>
 using namespace std;
+//BFS
+class SolutionBFS {
+  public:
 
-class CycleDetection{
-public:
-    //V is total nodes
-    bool isCycle(int V, vector<vector<int>> adj){
-        vector<int> visited(V+1, 0);
-        for (int i = 0; i < V; i++)
-        {
-            if (!visited[i])
-            {
-                if (checkForCycle(i, adj, visited, -1)) return true;
+    bool bfs(vector<int>* adj, int node, vector<int> &vis){
+        queue<pair<int,int>>q;
+        q.push({node,-1});
+        vis[node] = 1;
+        while(!q.empty()){
+            int curr = q.front().first;
+            int parent = q.front().second;
+            q.pop();
+            for(auto neighbour: adj[curr]){
+                if (!vis[neighbour]){
+                    q.push({neighbour,curr});
+                    vis[neighbour] = 1;
+                } else {
+                    if (parent!=neighbour) return true;
+                }
             }
-                
         }
         return false;
-        
+
     }
-private:
-    bool checkForCycle(int V, vector<vector<int>> adj, vector<int> &visited, int parent){
-        visited[V] = true;
-        for(auto itr: adj[V]){
-            if (!visited[itr]){
-              if (checkForCycle(itr,adj,visited,V)) return true;
-            } else if (parent!=itr){
-                return true;
+
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        // Code here
+        vector<int> vis(V+1);
+        for (int i = 0; i < V; ++i)
+        {
+            if (!vis[i]){
+                if (bfs(adj,i, vis)) return true;
+            }
+        }
+        return false;
+    }
+};
+
+//DFS
+class Solution {
+  public:
+
+    bool dfs(vector<int>* adj, int node, int parent, vector<int> &vis){
+        vis[node] = 1;
+        bool res = false;
+        for(auto neighbour: adj[node]){
+            if (!vis[neighbour]){
+                if ( dfs(adj,neighbour,node,vis)) return true;
+            } else {
+                if (parent!=neighbour) return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<int> vis(V+1);
+        for (int i = 0; i < V; ++i)
+        {
+            if(!vis[i]){
+                if (dfs(adj,i,-1,vis)) return true;
             }
         }
         return false;
