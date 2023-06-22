@@ -37,7 +37,7 @@ void dijkstra (int** edges , int n){
         if(distance[i] == INT_MAX){
             cout<<"Vertex "<<i+1<<": There is no path from the source to the destination"<<endl;
             }
-            else{
+        else{
                   cout<<"Vertex "<<i+1<<": shortest distance is "<<distance[i]<<endl;
             }
      
