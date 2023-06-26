@@ -1,14 +1,48 @@
-/* Disjoint Set Union
-# Cluster based problems: Have some elements and we need to add them into different groups/clusters and we might also want to check for any element that which group it belongs to..
--> Two kinds of operations : 
-1. Union -> U(a,b)-> add element b to the group of a.
-2. get(x) -> to which group x belongs to.
+#include <bits/stdc++.h>
+using namespace std;
 
-How to define identity of a group?
--> We define the leader/parent of the group , we pick any one element and mark it the leader.
+class DSU{
+  vector<int> rank, parent, size;
+public:
+  DSU(int n){
+    rank.resize(n+1);
+    parent.resize(n+1);
+    size.resize(n+1);
+    for (int i = 0 ; i <= n; i++) {
+      parent[i] = i;
+      size[i] = 1;
+    }
+  }
 
-*/
-int main (int argc, char *argv[]) {
-  
-  return ;
-}
+  int findUltimateParent(int node){
+    if (node == parent[node]) return node;
+    return parent[node] = findUltimateParent(parent[node]);
+  }
+
+  void unionByRank(int u, int v){
+    int ultimateP_u = findUltimateParent(u);
+    int ultimateP_v = findUltimateParent(v);
+    if (ultimateP_u==ultimateP_v) return;
+    if (rank[ultimateP_u]<rank[ultimateP_v]){
+      parent[ultimateP_u] = ultimateP_v;
+    } else if (rank[ultimateP_v]<rank[ultimateP_u]){
+      parent[ultimateP_v] = ultimateP_u;
+    } else {
+      parent[ultimateP_v] = ultimateP_u;
+      rank[ultimateP_u]++;
+    }
+  }
+
+  void unionBySize(int u, int v){
+    int ultimateP_u = findUltimateParent(u);
+    int ultimateP_v = findUltimateParent(v);
+    if (ultimateP_u == ultimateP_v) return;
+    if (size[ultimateP_u]<size[ultimateP_v]){
+      parent[ultimateP_u] = ultimateP_v;
+      size[ultimateP_v] += size[ultimateP_u];
+    } else {
+      parent[ultimateP_v] = ultimateP_u;
+      size[ultimateP_u] += size[ultimateP_v];
+    }
+  }
+};
