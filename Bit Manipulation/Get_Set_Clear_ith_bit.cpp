@@ -72,6 +72,11 @@ int countSetBits_Faster(int n){
 	return cnt;
 }
 
+// and of the number and it's 2's complement 
+int rightmostSetBitMask(int n){
+  return n&-n;
+}
+
 int fastExponentiation(int a, int b){
 	int ans = 1;
 	while(b>0){
