@@ -19,7 +19,6 @@ public:
    
     vector<int> subsetSums(vector<int> arr, int N)
     {
-      
     vector<int> subsetSum;
     f(arr,N,0,0,subsetSum);
     sort(subsetSum.begin(),subsetSum.end());
