@@ -1,5 +1,6 @@
-#include <vector>
-#include <queue>
+#include <bits/stdc++.h>
+using namespace std;
+
 vector<int> kLargest(int input[], int n, int k){
    
     priority_queue <int, vector <int>, greater<int>> pq; 
