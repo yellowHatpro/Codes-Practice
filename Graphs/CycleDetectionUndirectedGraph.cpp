@@ -45,7 +45,6 @@ class Solution {
 
     bool dfs(vector<int>* adj, int node, int parent, vector<int> &vis){
         vis[node] = 1;
-        bool res = false;
         for(auto neighbour: adj[node]){
             if (!vis[neighbour]){
                 if ( dfs(adj,neighbour,node,vis)) return true;
