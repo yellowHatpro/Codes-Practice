@@ -19,7 +19,7 @@ public:
         q.push({root,0});
         while(!q.empty()){
         	int n = q.size();
-        	int minimumInTheLevel = q.front().second;
+        	int minimumInTheLevel = q.front().second; //remove level's first element's index, that will be min. and will prevent overflow 
         	int l,r;
         	for (int i = 0; i < n; ++i)
         	{	
