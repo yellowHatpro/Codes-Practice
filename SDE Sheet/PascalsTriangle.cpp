@@ -16,3 +16,20 @@ public:
     return res;
     }
 };
+
+//Calculating value of nCr
+//Time : O(column) Space: O(1)
+int nCr(int n, int r){
+  long long res = 1;
+  for(int i = 0; i < r; i++){
+    res*=(n-i);
+    res/=i+1;
+  }
+  return res;
+}
+
+int pascalTriangle(int row, int col){
+  int element = nCr(row, col);
+  return element;
+}
+

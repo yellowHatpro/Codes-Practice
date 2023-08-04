@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -6,11 +5,6 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
       int n = nums.size();      
-      if (n == 1) return ;
-      if (n == 2) {
-      reverse(nums.begin(), nums.end());
-      return;
-      }
       int justSmallerNumber = INT_MAX;
       for(int i = n-2; i >=0; i--){
         if (nums[i]<nums[i+1]){
@@ -22,15 +16,13 @@ public:
       reverse(nums.begin(), nums.end());
       return ;
     }
-      int bigger = nums[justSmallerNumber+1];
-      for(int i = justSmallerNumber+1; i < n; i++){
+      for(int i = n-1; i > justSmallerNumber; i--){
         if (nums[i]>nums[justSmallerNumber]){
-          bigger = i;
+          swap(nums[i],nums[justSmallerNumber]);
+          break;
       }
     }
-      swap(nums[justSmallerNumber], nums[bigger]);
       reverse(nums.begin()+justSmallerNumber+1, nums.end());
       return;
-      
     }
 };
