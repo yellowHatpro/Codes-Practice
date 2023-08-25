@@ -2,43 +2,56 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DisplayCard from "../../components/Card/Card";
 import "./Directories.css";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-
-function Directories() {
-    let {name = ""} = useParams();
-    let [url, setUrl] = useState("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + name + "?ref=master");
-    console.log("url: " + url)
-    const [product, setProduct] = useState(null)
-    const headers = {
+const headers = {
         'Authorization': process.env.REACT_APP_GITHUB_TOKEN,
         'Accept': 'application/vnd.github.v3+json'
-    }
+  }
 
+function Directories({url, setUrl, path, setPath}) {
+    const [product, setProduct] = useState([])
     const navigate = useNavigate()
-
     useEffect(() => {
-
         axios.get(url, {}, {headers: headers})
             .then(response => {
-                setProduct(response.data)
+                const valv =  response.data.filter((item) => item.name[0] !== '.')
+                setProduct(valv)
             })
     }, [url])
+
+    
+
+    const handleSetPath = (newPath) => {
+    setPath(curr => [...curr, newPath])
+    }
+
+    function constructUrl(productItemName){
+      const res = path.join('/')
+      return `${res}/${productItemName}`
+  }
+
+    const handleCardClick = (productItemName) => {
+      console.log(productItemName)
+      handleSetPath(productItemName)
+      const newStr = constructUrl(productItemName)
+      const newName = `${newStr}/`
+      console.log(`new name : ${newName}`)
+      setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + newName + "?ref=master")
+      navigate(newName)
+    }
+    
     if (product) {
         return (
             <div className='code-directories'>
-                {product.map((productItem) => (
-                    <DisplayCard name={productItem.name} onClick={() => {
-                        name += "/" + productItem.name
-                        setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + name + "?ref=master")
-                        navigate(name)
-                    }}/>
+                {product.map((productItem, i) => (
+                    <DisplayCard key={i} name={productItem.name} onClick={ () => handleCardClick(productItem.name)  }/>
                 ))}
             </div>
         )
     } else {
         return (
-            <div></div>
+            <div> Loading ... </div>
         )
     }
 }

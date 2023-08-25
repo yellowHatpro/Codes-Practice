@@ -2,12 +2,12 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import "./Card.css";
 
-function DisplayCard(type) {
+function DisplayCard({onClick, name}) {
   return (
-    <div className="displayCard" onClick={type.onClick}>
+    <div className="displayCard" onClick={onClick}>
       <Card >
-        <Card.Title>{type.name}</Card.Title>
-        <Card.Link href="#">{type.name}</Card.Link>
+        <Card.Title>{name}</Card.Title>
+        <Card.Link href="#">{name}</Card.Link>
       </Card>
     </div>
   );
