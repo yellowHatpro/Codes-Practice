@@ -7,7 +7,6 @@ function DisplayCard({onClick, name}) {
     <div className="displayCard" onClick={onClick}>
       <Card >
         <Card.Title>{name}</Card.Title>
-        <Card.Link href="#">{name}</Card.Link>
       </Card>
     </div>
   );

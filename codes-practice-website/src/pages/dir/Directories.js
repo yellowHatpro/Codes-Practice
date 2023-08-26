@@ -9,7 +9,9 @@ const headers = {
         'Accept': 'application/vnd.github.v3+json'
   }
 
-function Directories({url, setUrl, path, setPath}) {
+function Directories() {
+    const [path, setPath] = useState([])
+    const [url, setUrl] = useState("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/?ref=master");
     const [product, setProduct] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
@@ -42,17 +44,18 @@ function Directories({url, setUrl, path, setPath}) {
     }
     
     if (product) {
-        return (
+        return (<>
+            <h2>{`${product.length} Files and Folders`}</h2>
             <div className='code-directories'>
                 {product.map((productItem, i) => (
                     <DisplayCard key={i} name={productItem.name} onClick={ () => handleCardClick(productItem.name)  }/>
                 ))}
             </div>
-        )
+        </>)
     } else {
         return (
             <div> Loading ... </div>
-        )
+     )
     }
 }
 export default Directories;
