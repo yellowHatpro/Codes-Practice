@@ -4,15 +4,15 @@ import DisplayCard from "../../components/Card/Card";
 import File from "../files/File"
 import "./Directories.css";
 
-const headers = {
-        'Authorization': process.env.REACT_APP_GITHUB_TOKEN,
+const authHeaders = {
+        'Authorization': `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
         'Accept': 'application/vnd.github.v3+json'
   }
 
 function Directories({url, setUrl, path, setPath}) {
     const [product, setProduct] = useState([])
     useEffect(() => {
-        axios.get(url, {}, {headers: headers})
+        axios.get(url, {}, {headers: authHeaders})
             .then(response => {
                 setProduct(response.data)
             })
@@ -28,11 +28,9 @@ function Directories({url, setUrl, path, setPath}) {
   }
 
     const handleCardClick = (productItemName) => {
-      console.log(productItemName)
       handleSetPath(productItemName)
       const newStr = constructUrl(productItemName)
       const newName = `${newStr}/`
-      console.log(`new name : ${newName}`)
       setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + newName + "?ref=master")
       
     }
@@ -46,7 +44,11 @@ function Directories({url, setUrl, path, setPath}) {
             <h2>{`${product.length} Files and Folders`}</h2>
             <div className='code-directories'>
                 {product.map((productItem, i) => (
-                    <DisplayCard key={i} name={productItem.name} onClick={ () => handleCardClick(productItem.name)  }/>
+                    <DisplayCard 
+                      key={i}
+                      name={productItem.name}
+                      type={productItem.type}
+                      onClick={ () => handleCardClick(productItem.name)   }/>
                 ))}
             </div>
         </>)

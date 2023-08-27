@@ -1,11 +1,12 @@
 .code-container {
   width: 100%;
-  overflow-x: auto; /* Add horizontal scrollbar if needed */
+  height: 100%;
+  overflow-x: auto;
 }
 
 .code-block {
   white-space: pre;
-  tab-size: 4; /* Adjust as needed */
+  tab-size: 4;
   margin: 0;
   padding: 10px;
   border: 1px solid #ddd;

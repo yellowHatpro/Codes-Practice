@@ -12,8 +12,9 @@ const File = ({url}) => {
 
   return (
     <div className="code-container">
-
-     <pre className="code-block"> {fileContent} </pre>
+    {
+       (fileContent) ? <pre className="code-block"> {fileContent} </pre> : "Loading"
+      }
     
      </div>
   )

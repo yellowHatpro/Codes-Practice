@@ -11,7 +11,7 @@ function App() {
     return (
         <div className="App">
             <Router>
-                <Navbar/>
+                <Navbar url={url} setUrl={setUrl} path={path} setPath={setPath}/>
                 <div className="container">
                     <Routes>
                         <Route path="/" element={<Directories url={url} setUrl={setUrl} path={path} setPath={setPath}/>}/>
