@@ -1,0 +1,15 @@
+.code-container {
+  width: 100%;
+  overflow-x: auto; /* Add horizontal scrollbar if needed */
+}
+
+.code-block {
+  white-space: pre;
+  tab-size: 4; /* Adjust as needed */
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f7f7f7;
+  font-family: monospace;
+  text-align: left;
+}

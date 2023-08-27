@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DisplayCard from "../../components/Card/Card";
+import File from "../files/File"
 import "./Directories.css";
-import {useNavigate} from "react-router-dom";
 
 const headers = {
         'Authorization': process.env.REACT_APP_GITHUB_TOKEN,
         'Accept': 'application/vnd.github.v3+json'
   }
 
-function Directories() {
-    const [path, setPath] = useState([])
-    const [url, setUrl] = useState("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/?ref=master");
+function Directories({url, setUrl, path, setPath}) {
     const [product, setProduct] = useState([])
-    const navigate = useNavigate()
     useEffect(() => {
         axios.get(url, {}, {headers: headers})
             .then(response => {
-                const valv =  response.data.filter((item) => item.name[0] !== '.')
-                setProduct(valv)
+                setProduct(response.data)
             })
     }, [url])
-
-    
 
     const handleSetPath = (newPath) => {
     setPath(curr => [...curr, newPath])
@@ -40,10 +34,14 @@ function Directories() {
       const newName = `${newStr}/`
       console.log(`new name : ${newName}`)
       setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + newName + "?ref=master")
-      navigate(newName)
+      
     }
     
-    if (product) {
+    if (product.type==='file'){
+      return <>
+      <File url={product.download_url}/>
+    </>
+  } else {
         return (<>
             <h2>{`${product.length} Files and Folders`}</h2>
             <div className='code-directories'>
@@ -52,10 +50,6 @@ function Directories() {
                 ))}
             </div>
         </>)
-    } else {
-        return (
-            <div> Loading ... </div>
-     )
-    }
+    }  
 }
 export default Directories;
