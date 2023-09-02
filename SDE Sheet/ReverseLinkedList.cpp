@@ -10,7 +10,7 @@ using namespace std;
       ListNode(int x, ListNode *next) : val(x), next(next) {}
   };
 
-class SolutionIterative {
+class SolutionRecursive {
 public:
     ListNode* reverseList(ListNode* head) {
       if (!head || !head->next) return head;
