@@ -6,7 +6,7 @@ public:
   int candy(vector<int> &ratings) {
     if (ratings.size() == 1)
       return 1;
-    long long res = 1, currMax = 0, i = 1, n = ratings.size();
+    long long res = 1, i = 1, n = ratings.size();
     long long currEle = 1;
     while (i < n) {
       // Going Down
