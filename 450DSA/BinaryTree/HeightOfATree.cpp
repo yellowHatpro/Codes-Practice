@@ -1,73 +1,23 @@
-#include <algorithm>
-#include <bitset>
-#include <complex>
-#include <deque>
-#include <exception>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <ios>
-#include <iosfwd>
-#include <iostream>
-#include <istream>
-#include <iterator>
-#include <limits>
-#include <list>
-#include <locale>
-#include <map>
-#include <memory>
-#include <new>
-#include <numeric>
-#include <ostream>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdexcept>
-#include <streambuf>
-#include <string>
-#include <typeinfo>
-#include <utility>
-#include <valarray>
-#include <vector>
-#include <array>
-#include <atomic>
-#include <chrono>
-#include <condition_variable>
-#include <forward_list>
-#include <future>
-#include <initializer_list>
-#include <mutex>
-#include <random>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
-#include <system_error>
-#include <thread>
-#include <tuple>
-#include <typeindex>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-    
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
+struct Node {
+  int data;
+  struct Node *left;
+  struct Node *right;
+
+  Node(int x) {
+    data = x;
+    left = right = NULL;
+  }
 };
 
-class Solution{
-    public:
-    //Function to find the height of a binary tree.
-    int height(struct Node* node){
-        if (!node) return 0;
-        return 1 + max(height(node->left), height(node->right));
-    }
+class Solution {
+public:
+  // Function to find the height of a binary tree.
+  int height(struct Node *node) {
+    if (!node)
+      return 0;
+    return 1 + max(height(node->left), height(node->right));
+  }
 };
