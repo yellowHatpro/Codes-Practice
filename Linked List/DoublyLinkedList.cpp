@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-class DoublyLinkedListNode{
+class DoublyLinkedListNode {
 public:
-	int data;
-	DoublyLinkedListNode* next;
-	DoublyLinkedListNode* prev;
+  int data;
+  DoublyLinkedListNode *next;
+  DoublyLinkedListNode *prev;
 };
