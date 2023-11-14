@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
-import DisplayCard from "../../components/Card/Card";
+import DisplayCard from "../../components/Card/Card.jsx";
 import File from "../files/File"
 import "./Directories.css";
-
-const authHeaders = {
-        'Authorization': `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json'
-  }
+import {authHeaders} from "../../network/index.js";
+import axios from "axios";
 
 function Directories({url, setUrl, path, setPath}) {
+
     const [product, setProduct] = useState([])
+
     useEffect(() => {
-        axios.get(url, {}, {headers: authHeaders})
-            .then(response => {
-                setProduct(response.data)
-            })
+        try {
+             axios.get(url, {headers: authHeaders})
+                .then(response => {
+                    setProduct(response.data)
+                })
+        } catch (e) {
+            console.log("why")
+        }
     }, [url])
 
     const handleSetPath = (newPath) => {
@@ -32,19 +34,22 @@ function Directories({url, setUrl, path, setPath}) {
       const newStr = constructUrl(productItemName)
       const newName = `${newStr}/`
       setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + newName + "?ref=master")
-      
+
     }
-    
+    if (product===undefined){
+        return <></>
+    }
+
     if (product.type==='file'){
       return <>
-      <File url={product.download_url}/>
+      <File url={product?.download_url}/>
     </>
   } else {
         return (<>
-            <h2>{`${product.length} Files and Folders`}</h2>
+            <h2>{`${product?.length} Files and Folders`}</h2>
             <div className='code-directories'>
                 {product.map((productItem, i) => (
-                    <DisplayCard 
+                    <DisplayCard
                       key={i}
                       name={productItem.name}
                       type={productItem.type}
@@ -52,6 +57,6 @@ function Directories({url, setUrl, path, setPath}) {
                 ))}
             </div>
         </>)
-    }  
+    }
 }
 export default Directories;

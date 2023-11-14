@@ -2,14 +2,12 @@
     height: 50px;
     padding-left:15px;
     color: bisque;
-    overflow: hidden;
     background-color:#1f1f1f;
-    font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2em;
     display: flex;
-    justify-content: start;
-    align-content: start;
     flex-direction: row;
+    justify-content: start;
+    align-content: center;
 }
 
 .back-press{
