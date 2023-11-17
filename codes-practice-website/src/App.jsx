@@ -5,31 +5,35 @@ import Directories from "./pages/dir/Directories.jsx";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import {gh_url, handleBackPress} from "./utils.js";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 function App() {
     const [path, setPath] = useState([])
     const [url, setUrl] = useState(gh_url);
+    const queryClient = new QueryClient()
     return (
-        <div className="App">
-            <Router>
-                <div className={"app-content"}>
-                    <Navbar path={path} handleBackPress={() => handleBackPress(path, setPath, setUrl)}/>
-                    <div className="container">
-                        <Routes>
-                            <Route path="/"
-                                   element=
-                                       {<Directories
-                                           url={url}
-                                           setUrl={setUrl}
-                                           path={path}
-                                           setPath={setPath}/>}/>
-                            <Route path="*" element={"404 Not Found"}/>
-                        </Routes>
+        <QueryClientProvider client={queryClient}>
+            <div className="App">
+                <Router>
+                    <div className={"app-content"}>
+                        <Navbar path={path} handleBackPress={()=>handleBackPress(path,setPath,setUrl)}/>
+                        <div className="container">
+                            <Routes>
+                                <Route path="/"
+                                       element=
+                                           {<Directories
+                                               url={url}
+                                               setUrl={setUrl}
+                                               path={path}
+                                               setPath={setPath}/>}/>
+                                <Route path="*" element={"404 Not Found"}/>
+                            </Routes>
+                        </div>
+                        <Footer/>
                     </div>
-                    <Footer/>
-                </div>
-            </Router>
-        </div>
+                </Router>
+            </div>
+        </QueryClientProvider>
     );
 }
 

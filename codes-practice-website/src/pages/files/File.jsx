@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './File.css'
 import {CopyBlock, solarizedLight} from "react-code-blocks";
-const File = ({url}) => {
-    const [fileContent, setFileContent] = useState("")
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.text())
-            .then(content => {
-                setFileContent(content)
-            })
-    }, [])
+import {useQuery} from "@tanstack/react-query";
+import {Loading} from "../../components/Loading.jsx";
 
-    return (
-        <div className="code-container">
-            {
-                (fileContent) ? <pre
-                    className="code-block">
+const File = ({url}) => {
+    const {data: fileContent, error, isLoading, isFetching} = useQuery({
+        queryKey: ["fileContent"],
+        queryFn: async () => {
+            return await fetch(url).then(res => res.text())
+        }
+    })
+
+    if (isLoading) return <Loading/>
+    else if (isFetching) return "fetching"
+    else if (error) return "Error"
+    else if (fileContent) return (
+        <pre className="code-block">
            <CopyBlock
                language={"cpp"}
                text={fileContent}
@@ -24,10 +25,7 @@ const File = ({url}) => {
                wrapLines={true}
                codeBlock
            />
-       </pre> : "Loading"
-            }
-
-        </div>
+       </pre>
     )
 }
 
