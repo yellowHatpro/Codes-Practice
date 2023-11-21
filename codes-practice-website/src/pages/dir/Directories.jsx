@@ -4,10 +4,12 @@ import File from "../files/File"
 import "./Directories.css";
 import { authHeaders } from "../../network/index.js";
 import axios from "axios";
+import { NETWORK_ERROR_CODE } from '../../constants.js';
 
 function Directories({ url, setUrl, path, setPath }) {
 
   const [product, setProduct] = useState([])
+  const [error, setError] = useState("")
 
   useEffect(() => {
     try {
@@ -15,7 +17,11 @@ function Directories({ url, setUrl, path, setPath }) {
         .then(response => {
           setProduct(response.data)
         })
+        .catch(err => {
+          setError(err.code)
+        })
     } catch (e) {
+      setError(e.toString())
       console.log("why")
     }
   }, [url])
@@ -35,8 +41,8 @@ function Directories({ url, setUrl, path, setPath }) {
     const newName = `${newStr}/`
     setUrl("https://api.github.com/repos/yellowHatpro/Codes-Practice/contents/" + newName + "?ref=master")
   }
-  if (product === undefined) {
-    return <></>
+  if (error === NETWORK_ERROR_CODE) {
+    return <div className={"network-error"}>Please connect to internet</div>
   }
 
   if (product.type === 'file') {

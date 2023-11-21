@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "proxy":"http://localhost:8080",
   "dependencies": {
     "@tanstack/react-query": "^5.7.2",
     "axios": "^1.6.0",
