@@ -59,77 +59,85 @@ ll modpow(ll x, ll n, int m = MOD) {
 
 int CEIL(int a, int b) { return (a + b - 1) / b; }
 
-void solve() {
-  string s;
-  cin >> s;
-  string a = "";
-  string b = "";
-  int i = 1;
-  bool f = false;
-  int sz = s.size();
-  for (; i <= sz / 2; i++) {
-    if (s[i] == '0') {
-      continue;
-    } else if (s[i] < s[0] and sz - i > i) {
-      for (int x = 0; x < i; x++) {
-        a += s[x];
-      }
-      for (int x = i; i < sz; x++) {
-        b += s[x];
-      }
-      f = true;
-      break;
+// DP solution will give MLE here
+//  TODO: Come back when you learn segment tree, check the editorial:
+//  https://codeforces.com/blog/entry/124220
+int f(int s, int t, vector<int> &a, vector<vector<vector<int>>> &dp, int i,
+      int n, int penA, int penB) {
+  if (i == n) {
+    return penA + penB;
+  }
+  if (dp[i][penA][penB] != -1) {
+    return dp[i][penA][penB];
+  }
+  int cntS = penA;
+  int cntT = penB;
+  if (s != 0 and s < a[i]) {
+    cntS++;
+  }
+  if (t != 0 and t < a[i]) {
+    cntT++;
+  }
+  int inS = f(a[i], t, a, dp, i + 1, n, (s != 0 and s < a[i]) ? penA + 1 : penA,
+              penB);
+  int inT = f(s, a[i], a, dp, i + 1, n, penA,
+              (t != 0 and t < a[i]) ? penB + 1 : penB);
+  return dp[i][penA][penB] = min(inS, inT);
+}
 
-    } else if (s[i] > s[0]) {
-      for (int x = 0; x < i; x++) {
-        a += s[x];
-      }
-      for (int x = i; i < sz; x++) {
-        b += s[x];
-      }
-      f = true;
-      break;
-    } else if (s[i] == s[0]) {
-      if (i < s.size() / 2) {
-        for (int x = 0; x < i; x++) {
-          a += s[x];
-        }
-        for (int x = i; i < sz; x++) {
-          b += s[x];
-        }
-        f = true;
-        break;
+void solve() {
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
+  vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(n, -1)));
+  cout << f(0, 0, a, dp, 0, n, 0, 0) << endl;
+}
+
+void greedy() {
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
+  vector<int> s, t;
+  int ans = 0;
+  for (auto itr : a) {
+    if (s.empty()) {
+      s.push_back(itr);
+    } else if (t.empty()) {
+      if (itr <= s.back()) {
+        s.push_back(itr);
       } else {
-        for (int x = 0; x < i; x++) {
-          a += s[x];
-        }
-        for (int x = i; i < sz; x++) {
-          b += s[x];
-        }
-        if (true) {
-          cout << a << " " << b << endl;
-          return;
-        } else {
-          cout << -1 << endl;
-          return;
-        }
+        t.push_back(itr);
       }
-    }
-    if (f) {
-      cout << a << " " << b << endl;
-      return;
     } else {
-      cout << -1 << endl;
-      return;
+      // make t = array having smaller back element
+      if (s.back() < t.back()) {
+        swap(s, t);
+      }
+      if (itr <= t.back()) {
+        t.push_back(itr);
+      } else if (itr <= s.back()) {
+        s.push_back(itr);
+      } else {
+        t.push_back(itr);
+        ans++;
+      }
     }
   }
+  cout << ans << endl;
 }
 
 int32_t main() {
   FIO int t = 1;
   cin >> t;
   while (t--) {
-    solve();
+    // solve();
+    greedy();
   }
   return 0;
 }
