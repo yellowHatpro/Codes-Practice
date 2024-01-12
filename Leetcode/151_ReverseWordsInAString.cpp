@@ -2,28 +2,25 @@
 using namespace std;
 class Solution {
 public:
-    string reverseWords(string s) {
-        s+=" ";
+  string reverseWords(string s) {
+    string res;
     stack<string> st;
-    int i;
-    string str="";
-    for(i=0;i<s.length();i++)
-    {
-        if(s[i]==' ')
-        {
-            st.push(str);
-            str="";
-        }
-        else str+=s[i];
+    for (int i = 0; i < s.size(); i++) {
+      if (s[i] == ' ')
+        continue;
+      string word;
+      while (i < s.size() and s[i] != ' ') {
+        word += s[i++];
+      }
+      st.push(word);
     }
-    string ans="";
-    while(st.size()!=1)
-    {
-        ans+=st.top()+" ";
-        st.pop();
+    while (!st.empty()) {
+      res += st.top();
+      st.pop();
+      if (!st.empty()) {
+        res += ' ';
+      }
     }
-    ans+=st.top();// The last word should'nt have a space after it
-    
-    return ans;
-    }
+    return res;
+  }
 };
