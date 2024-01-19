@@ -1,35 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+// General idea is to push everything to stack until we get a ']'
+// We are pushing strings to stack, because we are also pushing the resulting
+// substrings ex: 3[a2[c]] : first 2[c] will be converted to "cc", so we push to
+// stack, because the substring "cc" is also the part of the outer operation,
+// here 3[acc]
+// Thus, some extra code is written in order to compensate adding strings to
+// stack
+
 class Solution {
 public:
-    string decodeString(string s) {
-        string ans="";
-        int num=0;
-        stack<pair<string,int>>stk;//Stack to store the string between [] and the number of times it needs to be generated
-        for(int i=0;i<s.length();i++)
-        {
-            if(isdigit(s[i]))
-                num=(num*10)+(s[i]-48);//Since the number can be 2 digit or more we are generating the number
-           else if(isalpha(s[i]))//IF given character is al[habet we build the string
-                ans+=s[i];
-           else if(s[i]=='[')//The moment the first [ is encountered we push the substring and the number generated to the stack
-            {
-                stk.push({ans,num});
-                ans="";// making the substring variable blank and number zero to prepare it for the next iteration
-                    num=0;
-            }
-            else if(s[i]==']')//As a ] is encountered we generate the given substring according to 'k' times given on stack top.We add the string at stack top and generated string so that it may be processed again if required
-            {
-                string tmp=ans;
-                for(int i=1;i<stk.top().second;i++)                
-                   tmp+=ans;
-                ans=stk.top().first+tmp;
-                stk.pop();
-                
-            }
-                
+  string decodeString(string s) {
+    string res;
+    stack<string> stck;
+    for (auto ch : s) {
+      if (ch != ']') {
+        string x;
+        x += ch;
+        stck.push(x);
+      } else {
+        string substring;
+        while (stck.top() != "[") {
+          substring = stck.top() + substring;
+          stck.pop();
         }
-     
-        return ans;
+        stck.pop();
+        string k;
+        while (!stck.empty() and (stck.top().size() == 1) and
+               isdigit(stck.top()[0])) {
+          k = stck.top() + k;
+          stck.pop();
+        }
+        int ktimes = stoi(k);
+        string finalStringToBeAppendedToStackTop;
+        for (int i = 0; i < ktimes; i++) {
+          finalStringToBeAppendedToStackTop += substring;
+        }
+        stck.push(finalStringToBeAppendedToStackTop);
+      }
     }
+    while (!stck.empty()) {
+      res = stck.top() + res;
+      stck.pop();
+    }
+    return res;
+  }
 };
