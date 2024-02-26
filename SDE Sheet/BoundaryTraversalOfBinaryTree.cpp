@@ -46,8 +46,10 @@ vector<int> traverseBoundary(TreeNode<int> *root) {
       temp = temp->right;
   }
   temp = root;
+  // Leaves
   addToLeaves(leaves, temp);
   temp = root;
+  // Right boundary
   while (!isLeaf(temp)) {
     rightBoundary.push_back(temp->data);
     if (temp->right) {
