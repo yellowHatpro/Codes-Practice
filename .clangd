@@ -1,7 +1,14 @@
+If:
+  PathMatch: .*\.cpp
 CompileFlags:
   Add:
     - -std=c++20
 
+If:
+  PathMatch: .*\.c
+
+CompilerFlags:
+  Add: [-std=c23]
 
 InlayHints:
   Designators: Yes
