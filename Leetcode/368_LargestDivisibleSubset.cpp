@@ -3,31 +3,31 @@ using namespace std;
 
 class Solution {
 public:
+  vector<int> f(int ind, int prev, vector<int> &nums,
+                vector<vector<vector<int>>> &dp) {
+    if (ind == nums.size()) {
+      return {};
+    }
+
+    if (dp[ind][prev + 1].size() != 0)
+      return dp[ind][prev + 1];
+    vector<int> take = {};
+    if (prev == -1 || nums[ind] % nums[prev] == 0) {
+      take = f(ind + 1, ind, nums, dp);
+      take.insert(take.begin(), nums[ind]);
+    }
+
+    vector<int> nottake = f(ind + 1, prev, nums, dp);
+
+    return dp[ind][prev + 1] = take.size() >= nottake.size() ? take : nottake;
+  }
+
   vector<int> largestDivisibleSubset(vector<int> &nums) {
+    vector<int> ans;
+    int prev = -1;
+    vector<vector<vector<int>>> dp(
+        nums.size(), vector<vector<int>>(nums.size() + 1, vector<int>()));
     sort(nums.begin(), nums.end());
-    int n = nums.size();
-    vector<int> a(n, 1), prev(n, -1);
-    int max_len = 0, max_index = -1;
-
-    for (int i = 0; i < n; i++) {
-      for (int j = i - 1; j >= 0; j--) {
-        if (nums[i] % nums[j] == 0 && a[j] + 1 > a[i]) {
-          a[i] = a[j] + 1;
-          prev[i] = j;
-        }
-      }
-      if (a[i] > max_len) {
-        max_len = a[i];
-        max_index = i;
-      }
-    }
-    vector<int> result;
-    while (max_index != -1) {
-      result.push_back(nums[max_index]);
-      max_index = prev[max_index];
-    }
-
-    reverse(result.begin(), result.end());
-    return result;
+    return f(0, prev, nums, dp);
   }
 };

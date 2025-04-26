@@ -21,3 +21,21 @@ private:
     return totalCount;
   }
 };
+
+class SolutionPrefixSumWithHashmap {
+public:
+  int numSubarraysWithSum(vector<int> &nums, int goal) {
+    int count = 0;
+    int currentSum = 0;
+    unordered_map<int, int> m;
+    m[0] = 1;
+    for (int i = 0; i < nums.size(); i++) {
+      currentSum += nums[i];
+      if (m.find(currentSum - goal) != m.end()) {
+        count += m[currentSum - goal];
+      }
+      m[currentSum]++;
+    }
+    return count;
+  }
+};
