@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import DisplayCard from "../../components/Card/Card.jsx";
 import File from "../files/File";
 import "./Directories.css";
-import { authHeaders } from "../../network/index.js";
-import axios from "axios";
+import { fetchRepositoryData } from "../../network/index.js";
 import { NETWORK_ERROR_CODE } from "../../constants.js";
 
 function Directories({ url, setUrl, path, setPath }) {
@@ -11,19 +10,15 @@ function Directories({ url, setUrl, path, setPath }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    try {
-      axios
-        .get(url, { headers: authHeaders })
-        .then((response) => {
-          setProduct(response.data);
-        })
-        .catch((err) => {
-          setError(err.code);
-        });
-    } catch (e) {
-      setError(e.toString());
-      console.log("why");
-    }
+    setError("");
+
+    fetchRepositoryData(url)
+      .then((response) => {
+        setProduct(response);
+      })
+      .catch((err) => {
+        setError(err.code || err.message);
+      });
   }, [url]);
 
   const handleSetPath = (newPath) => {

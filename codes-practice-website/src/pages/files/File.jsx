@@ -6,7 +6,7 @@ import {Loading} from "../../components/Loading.jsx";
 
 const File = ({url}) => {
     const {data: fileContent, error, isLoading, isFetching} = useQuery({
-        queryKey: ["fileContent"],
+        queryKey: ["fileContent", url],
         queryFn: async () => {
             return await fetch(url).then(res => res.text())
         }

@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const githubToken = process.env.REACT_APP_GITHUB_TOKEN;
+
 export const authHeaders = {
-  'Authorization': `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
-  'Accept': 'application/vnd.github+json'
-}
+  Accept: "application/vnd.github+json",
+  ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
+};
 
 export const fetchRepositoryData = async (url) => {
   const res = await axios.get(url, { headers: authHeaders })
