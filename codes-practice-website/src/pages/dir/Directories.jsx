@@ -26,14 +26,14 @@ function Directories({
   handleSelectFile,
 }) {
   const [product, setProduct] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let ignore = false;
 
     setIsLoading(true);
-    setError("");
+    setError(null);
 
     fetchRepositoryData(url)
       .then((response) => {
@@ -57,7 +57,11 @@ function Directories({
       })
       .catch((err) => {
         if (!ignore) {
-          setError(err.code || err.message);
+          setError({
+            code: err.code || "UNKNOWN_ERROR",
+            status: err.response?.status,
+            message: err.response?.data?.message || err.message,
+          });
           setDirectoryCount(0);
         }
       })
@@ -87,13 +91,31 @@ function Directories({
     handleSelectFile(productItem);
   };
 
-  if (error === NETWORK_ERROR_CODE) {
+  if (error?.code === NETWORK_ERROR_CODE) {
     return (
       <section className="workspace-panel explorer-panel network-error" aria-live="polite">
         <div>
           <span className="panel-kicker">Explorer</span>
           <h3>Connection required</h3>
           <p>Please connect to the internet to load repository contents.</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    const isRateLimit = error.status === 403;
+
+    return (
+      <section className="workspace-panel explorer-panel network-error" aria-live="polite">
+        <div>
+          <span className="panel-kicker">Explorer</span>
+          <h3>{isRateLimit ? "GitHub API limit reached" : "Unable to load directory"}</h3>
+          <p>
+            {isRateLimit
+              ? "The deployed site is being rate-limited by GitHub right now. Adding a GitHub token in Vercel as REACT_APP_GITHUB_TOKEN will make the directory browser reliable."
+              : error.message || "The repository contents request failed."}
+          </p>
         </div>
       </section>
     );
