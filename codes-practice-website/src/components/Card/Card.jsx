@@ -1,19 +1,19 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import "./Card.css";
 
-function DisplayCard({ onClick, name, type }) {
-  const icon = (type === 'file') ? "📃" : "📂"
+function DisplayCard({ onClick, name, type, isActive }) {
+  const detail = type === "file" ? "source file" : "directory";
+
   return (
-    <div className="displayCard" onClick={onClick}>
-      <Card >
-        <Card.Title>
-          {
-            `${icon} ${name}`
-          }
-        </Card.Title>
-      </Card>
-    </div>
+    <button
+      className={`displayCard ${isActive ? "displayCard-active" : ""}`}
+      type="button"
+      onClick={onClick}
+    >
+      <span className="card-type">{type}</span>
+      <span className="card-name">{name}</span>
+      <span className="card-detail">{detail}</span>
+    </button>
   );
 }
 

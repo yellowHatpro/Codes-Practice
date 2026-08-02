@@ -1,13 +1,24 @@
-.footer{
-    margin-top:auto;
-    bottom : 0;
-    height: 56px;
-    width: 100%;
-    color: antiquewhite;
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-dark);
+  color: var(--color-dark-text);
+}
+
+.footer-shell {
+  width: min(var(--app-max-width), calc(100% - (var(--page-gutter) * 2)));
+  margin: 0 auto;
+  min-height: 88px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .footer-shell {
     text-align: center;
-    background-color:#1f1f1f;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+  }
 }

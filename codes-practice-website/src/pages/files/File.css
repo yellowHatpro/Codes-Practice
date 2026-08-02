@@ -2,9 +2,133 @@
   min-height: max-content;
   display: flex;
   flex-direction: column;
-  white-space: pre;
   tab-size: 4;
   margin: 0;
-  font-family: monospace;
   text-align: left;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  max-width: 100%;
+  background: #f3f6fb;
+  transition: border-color 180ms var(--ease-standard), transform 180ms var(--ease-standard);
+}
+
+.file-panel {
+  grid-column: span 8;
+  padding: 28px;
+  background: var(--color-dark);
+  color: var(--color-dark-text);
+  border-color: rgba(255, 255, 255, 0.14);
+  position: sticky;
+  top: 136px;
+  transition: border-color 180ms var(--ease-standard), transform 180ms var(--ease-standard);
+}
+
+.file-panel:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.file-panel p,
+.file-panel .panel-kicker {
+  color: rgba(244, 240, 232, 0.7);
+}
+
+.file-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.file-summary {
+  min-width: 0;
+  flex: 1 1 420px;
+}
+
+.file-summary h3 {
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  overflow-wrap: anywhere;
+}
+
+.file-summary p {
+  margin: 12px 0 0;
+  max-width: 48ch;
+  word-break: break-word;
+}
+
+.file-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 0 1 auto;
+}
+
+.file-badge {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--color-dark-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  transition:
+    background-color 180ms var(--ease-standard),
+    border-color 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard);
+}
+
+.file-badge:hover {
+  transform: translateY(-1px);
+}
+
+.file-badge-blue {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.file-panel-empty {
+  display: flex;
+  align-items: center;
+}
+
+.file-feedback {
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--color-dark-text);
+}
+
+.code-block > div {
+  border-radius: 0 !important;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.code-block:hover {
+  border-color: rgba(29, 77, 255, 0.3);
+}
+
+.code-block pre,
+.code-block code {
+  background: #f3f6fb !important;
+}
+
+.code-block span {
+  font-family: "IBM Plex Mono", monospace !important;
+}
+
+@media (max-width: 960px) {
+  .file-panel {
+    grid-column: 1 / -1;
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .file-toolbar {
+    flex-direction: column;
+  }
 }
